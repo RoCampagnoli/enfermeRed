@@ -38,7 +38,7 @@
  
   /* ---------- TIPOGRAFÍA ---------- */
   /* Principal: para títulos, logo, botones — geométrica, redondeada, con peso fuerte (como el isotipo) */
-  --font-principal: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
+  --font-principal: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
  
   /* Secundaria: para texto de cuerpo, párrafos, formularios — más neutra y legible en bloques largos */
   --font-secundaria: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;

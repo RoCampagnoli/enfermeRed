@@ -10,20 +10,51 @@
 
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/componentes.css">
+        <link rel="stylesheet" href="/css/home.css">
+
 
 </head>
 
 <body>
     <header>
         <nav class="navbar">
-            <ul>
-                <li><a href="/">Inicio</a></li>
+            
+            <a href="/" class="logo_a">
+                <img class="logo_img" src="/imagenes/logo_enfermeRed.png" alt="enfermeRed">
+            </a>
+
+            <ul class="lista_links">
+                <li><a href="/">¿Quienes somos?</a></li>
+                <li><a href="/">Nuestros enfemeros</a></li>
+                <li><a href="/">¿Cómo funcionamos?</a></li>
             </ul>
+
+            <div class="botones-sesion">
+                <button class="btn-login">Iniciar sesión</button>
+                <button class="btn-registro">Registrarse</button>
+            </div>
+            
+        </nav>
 
     </header>
     <main>
-        <h1>Bienvenido a enfermeRed</h1>
+        <section class="hero">
+            <img src="/imagenes/hero_home.png" alt="Imagen de enfermeros" class="hero-image">
+            <div class="hero-content">
+
+                <h1>enfermeRed</h1>
+                <h2>Cuidado profesional,</h2>
+                <h2>donde mas importa:</h2>
+                <h2>tu hogar</h2>
+                <button class="btn-busqueda">Busco Enfermero</button>
+                <button class="btn-enfermero">Soy Enfermero</button>
+
+            </div>
+        </section>
+
         <p>Esta es la página de inicio de enfermeRed.</p>
+        <p>enfermeRed es una plataforma que facilita la conexión entre enfermeros y pacientes, brindando servicios de salud de calidad.</p>
+
     </main>
 
     <footer>

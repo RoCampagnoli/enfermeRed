@@ -1,6 +1,51 @@
 @import url(/css/variables.css);
 
-.navbar {
-    background-color: var(--color-primario);
-    padding: 1rem;
+*{
+    box-sizing: border-box;
 }
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+/* =========================================================
+HEADERRRR
+   ========================================================= */
+header{
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.navbar {
+    background-color: var(--color-secundario);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--radius-md); /* Aprovecha tus variables */
+
+}
+
+.logo_img{
+    height: 70px;
+    width: auto;
+}
+
+.lista_Links{
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+/* =========================================================
+FOOTER
+   ========================================================= */
+footer{
+    background-color: var(--color-secundario);
+    color: var(--color-fondo);
+    text-align: center;
+    padding: 1rem;
+    border-radius: var(--radius-md); /* Aprovecha tus variables */
