@@ -1,0 +1,68 @@
+/* =========================================================
+   enfermeRed — Variables de marca
+   Colores extraídos directamente del logo + sistema de
+   apoyo (tints, shades, neutros y estados) para usar en
+   todas las vistas del proyecto.
+   ========================================================= */
+ 
+:root {
+ 
+  /* ---------- COLORES PRINCIPALES (del logo) ---------- */
+  --color-primario: #022a5b;        /* Azul marino — texto "enferme", figura masculina, contorno superior */
+  --color-secundario: #01aaa3;      /* Verde turquesa — texto "Red", corazón, uniforme */
+ 
+  /* Variantes del primario (azul) */
+  --color-primario-claro: #0a4a8f;
+  --color-primario-oscuro: #011a3a;
+  --color-primario-50: #e6ebf1;     /* fondos muy suaves, hover sutil */
+  --color-primario-100: #ccd7e3;
+ 
+  /* Variantes del secundario (verde) */
+  --color-secundario-claro: #3fc4bd;
+  --color-secundario-oscuro: #018a84;
+  --color-secundario-50: #e3f7f5;   /* fondos muy suaves, badges, hover sutil */
+  --color-secundario-100: #c2ede9;
+ 
+  /* ---------- NEUTROS (texto, fondos, bordes) ---------- */
+  --color-texto: #1f2937;           /* texto principal en párrafos */
+  --color-texto-secundario: #6b7280;/* subtítulos, taglines, ayuda */
+  --color-borde: #e2e8f0;
+  --color-fondo: #ffffff;
+  --color-fondo-alterno: #f5f7f9;   /* secciones alternadas, cards */
+ 
+  /* ---------- ESTADOS ---------- */
+  --color-exito: #16a34a;
+  --color-advertencia: #f59e0b;
+  --color-error: #dc2626;
+  --color-info: var(--color-secundario);
+ 
+  /* ---------- TIPOGRAFÍA ---------- */
+  /* Principal: para títulos, logo, botones — geométrica, redondeada, con peso fuerte (como el isotipo) */
+  --font-principal: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
+ 
+  /* Secundaria: para texto de cuerpo, párrafos, formularios — más neutra y legible en bloques largos */
+  --font-secundaria: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+ 
+  /* Pesos sugeridos */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+ 
+  /* Tamaños sugeridos (escala) */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-2xl: 2rem;     /* 32px */
+  --font-size-3xl: 2.5rem;   /* 40px */
+ 
+  /* ---------- RADIOS Y SOMBRAS (opcional, look del isotipo es redondeado) ---------- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(2, 42, 91, 0.08);
+  --shadow-md: 0 4px 12px rgba(2, 42, 91, 0.12);
+}
