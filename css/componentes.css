@@ -20,7 +20,7 @@ header{
 }
 
 .navbar {
-    background-color: var(--color-secundario);
+    background-color: var(--color-secundario-claro);
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -30,7 +30,7 @@ header{
 }
 
 .logo_img{
-    height: 70px;
+    height: 80px;
     width: auto;
 }
 
@@ -44,9 +44,45 @@ header{
 FOOTER
    ========================================================= */
 footer{
-    background-color: var(--color-secundario);
-    color: var(--color-fondo);
+    background-color: var(--color-secundario-claro);
+    color: var(--color-texto);
     text-align: center;
     padding: 1rem;
     border-radius: var(--radius-md); /* Aprovecha tus variables */
+}
+
+/* =========================================================
+BOTONES
+   ========================================================= */
+
+button, 
+.btn-login, 
+.btn-registro, 
+.btn-busqueda, 
+.btn-enfermero {
+    /* Tipografía y Tamaño Unificados */
+    font-family: var(--font-principal);      /* Poppins, Montserrat... */
+    font-size: var(--font-size-base);        /* Tamaño base de 16px (1rem) */
+    font-weight: var(--font-weight-semibold); /* Un peso intermedio para que se lea claro */
+    
+    /* Estructura y Espaciado */
+    padding: 0.75rem 1.5rem;                  /* Espacio interno (arriba/abajo - izquierda/derecha) */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;                             /* Espacio por si en el futuro agregas un icono */
+    
+    /* Borde Redondeado y Estética Base */
+    border-radius: var(--radius-md);         /* Usa tus 12px redondeados del isotipo */
+    border: 2px solid transparent;           /* Borde transparente por defecto para evitar saltos visuales */
+    cursor: pointer;                         /* Cambia el cursor a la mano al pasar por encima */
+    
+    /* Animación Suave para los Cambios de Color (Hover) */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Evitar que al hacer clic se vea un borde feo de navegador, manteniendo la accesibilidad */
+button:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: 2px;
 }
