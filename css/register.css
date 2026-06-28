@@ -1,7 +1,196 @@
-* {
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Open Sans", sans-serif;
     color: white;
+}*/
+
+/* --- VARIABLES GLOBALES --- */
+:root {
+    --azul-marino: #062A55;
+    --verde-cerceta: #00A398;
+    --blanco: #FFFFFF;
+    --gris-fondo: #F8F9FA;
+    --gris-texto: #666666;
+    --fuente-principal: 'Montserrat', sans-serif; /* Tipografía sugerida */
+}
+
+/* --- RESET BÁSICO --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente-principal);
+}
+
+body {
+    background-color: var(--blanco);
+    color: var(--azul-marino);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- CABECERA (HEADER) --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background-color: var(--blanco);
+    border-bottom: 2px solid var(--gris-fondo);
+}
+
+.navegacion.principal ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.navegacion.principal a {
+    text-decoration: none;
+    color: var(--azul-marino);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navegacion.principal a:hover {
+    color: var(--verde-cerceta);
+}
+
+/* BOTONES HEADER */
+.acciones-usuario {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secundario, .btn-primario, .btn-volver {
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid var(--azul-marino);
+    transition: all 0.3s ease;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--azul-marino);
+}
+
+.btn-primario {
+    background-color: var(--blanco);
+    color: var(--azul-marino);
+}
+
+.btn-secundario:hover, .btn-primario:hover {
+    border-color: var(--verde-cerceta);
+    color: var(--verde-cerceta);
+}
+
+/* --- CONTENIDO PRINCIPAL (MAIN) --- */
+.main-registro {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+}
+
+.titulo-seccion h1 {
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    color: var(--azul-marino);
+}
+
+/* --- PANTALLA DIVIDIDA (FLEXBOX) --- */
+.opciones-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem; /* Espacio entre el paciente y el enfermero */
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 4rem;
+}
+
+.tarjeta-rol {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.imagen-rol img {
+    width: 250px; /* Tamaño de los íconos grises del wireframe */
+    height: auto;
+    opacity: 0.8;
+}
+
+.btn-rol {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    background-color: var(--blanco);
+    border: 2px solid var(--azul-marino);
+    color: var(--azul-marino);
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-rol:hover {
+    background-color: var(--verde-cerceta);
+    border-color: var(--verde-cerceta);
+    color: var(--blanco);
+}
+
+.btn-volver {
+    background-color: var(--blanco);
+    font-size: 1rem;
+}
+
+.btn-volver:hover {
+    background-color: var(--gris-fondo);
+}
+
+/* --- PIE DE PÁGINA (FOOTER) --- */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 3rem;
+    background-color: var(--azul-marino);
+    color: var(--blanco);
+}
+
+.footer-logo img {
+    width: 150px;
+    margin-bottom: 1rem;
+}
+
+.footer h3 {
+    color: var(--verde-cerceta);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer a {
+    text-decoration: none;
+    color: var(--blanco);
+    line-height: 1.8;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--verde-cerceta);
+}
+
+.footer-contacto p {
+    line-height: 1.8;
 }
