@@ -42,6 +42,11 @@ body {
     border-bottom: 2px solid var(--gris-fondo);
 }
 
+.logo{
+    height: 80px;
+    width: auto;
+}
+
 .navegacion.principal ul {
     display: flex;
     list-style: none;
