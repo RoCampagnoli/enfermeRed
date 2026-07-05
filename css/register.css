@@ -1,4 +1,19 @@
+:root {
+    --azul-marino: #062A55;
+    --verde-cerceta: #00A398;
+    --blanco: #FFFFFF;
+    --gris-fondo: #F8F9FA;
+    --gris-texto: #666666;
+    --fuente-principal: 'Montserrat', sans-serif; /* Tipografía sugerida */
+}
 
+/* --- RESET BÁSICO --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente-principal);
+}
 
 .navegacion.principal ul {
     display: flex;
