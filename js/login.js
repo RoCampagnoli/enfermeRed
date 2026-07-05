@@ -57,6 +57,9 @@ async function manejarLogin(event) {
             throw new Error('Credenciales inválidas');
         }
 
+         // Guardamos el usuario logueado para que el resto del sitio sepa que hay sesión activa
+        localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioValido));
+        
         // Simulación breve para animar el botón y luego redirigir.
         await new Promise((resolve) => setTimeout(resolve, 600));
 

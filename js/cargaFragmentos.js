@@ -16,17 +16,28 @@ function inicializarSesion() {
     const btnSesion = document.getElementById('btnSesion');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const btnLogout = document.getElementById('btnLogout');
-    const usuario = localStorage.getItem('usuarioLogueado');
+    const linkMiPerfil = document.getElementById('linkMiPerfil');
+    const usuarioGuardado = localStorage.getItem('usuarioLogueado');
 
-    if (!btnSesion) return; // por seguridad, si algo falla no rompe el resto
+    if (!btnSesion) return;
 
-    if (usuario) {
+    if (usuarioGuardado) {
+        const usuario = JSON.parse(usuarioGuardado); // 👈 esto faltaba
+
         btnSesion.textContent = 'Mi perfil';
 
-        // Al hacer clic en el botón, se abre/cierra el menú
         btnSesion.onclick = (e) => {
             e.stopPropagation();
             dropdownMenu.classList.toggle('mostrar');
+        };
+
+        linkMiPerfil.onclick = (e) => {
+            e.preventDefault();
+            if (usuario.tipo === 'enfermero') {
+                window.location.href = '/vistas/miPerfilEnferm.html';
+            } else {
+                window.location.href = '/vistas/miPerfilPaciente.html';
+            }
         };
 
         btnLogout.onclick = (e) => {
@@ -36,15 +47,14 @@ function inicializarSesion() {
         };
 
     } else {
-        // Si no hay sesión, el botón va directo a login (sin dropdown)
         btnSesion.textContent = 'Iniciar sesión';
         btnSesion.onclick = () => {
             window.location.href = '/vistas/iniciarSesion.html';
         };
     }
-    // Cerrar el menú si se hace clic afuera
+
     document.addEventListener('click', () => {
-        dropdownMenu.classList.remove('mostrar');
+        if (dropdownMenu) dropdownMenu.classList.remove('mostrar');
     });
 }
 
