@@ -97,14 +97,28 @@
 .info-contacto{
 
     background:white;
-
     padding:2rem;
-
     border-radius:var(--radius-lg);
-
     box-shadow:var(--shadow-md);
+    
 
 }
+.info-contacto p{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.8rem;
+
+    margin:1rem 0;
+}
+
+.info-contacto svg{
+    width:20px;
+    height:20px;
+
+    flex-shrink:0;
+}
+
 .envio-msj{
 
     display:flex;

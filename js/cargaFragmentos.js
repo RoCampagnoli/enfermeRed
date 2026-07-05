@@ -6,5 +6,9 @@ async function cargarComponentes() {
         // Carga el footer
         const resFooter = await fetch('/vistas/fragmentos/footer.html');
         document.getElementById('footer-component').innerHTML = await resFooter.text();
+    
+        lucide.createIcons();
+
+    
     }
     cargarComponentes();

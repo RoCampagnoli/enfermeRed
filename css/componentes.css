@@ -44,7 +44,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding:0.5rem;
+    padding:0.5rem 1rem; ;
 
 }
 
@@ -102,4 +102,27 @@ button,
 button:focus-visible {
     outline: 2px solid var(--color-secundario);
     outline-offset: 2px;
+}
+.footer-contacto, .footer-links{
+    display:flex;
+    flex-direction:column;
+}
+
+.footer-contacto p,.footer-links p{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.8rem;
+    margin:0.5rem;
+}
+
+.footer-contacto svg{
+    width:20px;
+    height:20px;
+
+    flex-shrink:0;
+}
+
+h3{
+    margin-bottom:1rem;
 }
