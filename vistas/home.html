@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>enfermeRed</title>
     
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+   <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/componentes.css">
         <link rel="stylesheet" href="/css/home.css">
@@ -17,7 +20,7 @@
 
 <body>
     <div id="header-component"></div>
-    <main>
+    <main class="main-home">
         <section class="hero">
             <img src="/imagenes/hero_home.png" alt="Imagen de enfermeros" class="hero-image">
             <div class="hero-content">
@@ -32,9 +35,50 @@
 
             </div>
         </section>
+        <section class="contacto">
+            <div class="titulo-contacto">
+                <h1>Contactanos</h1>
+                <h2>Ante cualquier duda o consulta, no dudes en contactarnos</h2> 
+            </div>
+            <div class="contenido-contacto">
+                <div class="envio-msj">
+                    <h3>Envianos un mensaje</h3>
+                    <form class="form-contacto">
+                        <div class="fila">
+                            <input type="text" placeholder="Nombre" class="input-nombre">
+                            <input type="text" placeholder="Apellido" class="input-apellido">
+                        </div>
+                        <div class="fila">
+                            <input type="email" placeholder="Correo electrónico" class="input-correo">
+                            <input type="number" placeholder="Teléfono" class="input-telefono">
+                        </div>
+                        
+                        <textarea placeholder="Mensaje" class="input-mensaje"></textarea>
+                        <button class="btn-enviar">Enviar</button>
 
-        <p>Esta es la página de inicio de enfermeRed.</p>
-        <p>enfermeRed es una plataforma que facilita la conexión entre enfermeros y pacientes, brindando servicios de salud de calidad.</p>
+                    </form>
+                    
+
+                </div>
+
+                <div class="info-contacto">
+                    <h3>Información de contacto</h3>
+                    <p><i data-lucide="phone"></i> 11 6597-5913</p>
+                    <p><i data-lucide="mail"></i> enfermered@gmail.com</p>
+                    <p><i data-lucide="map-pin"></i>Av. Falsa 123, Buenos Aires</p> 
+                    <p><i data-lucide="clock"></i> Lunes a Viernes, 9:00 AM - 6:00 PM</p>
+                    <br>
+                    <h3>Seguinos en nuestras redes</h3>
+                    <ul class="lista_links">
+              <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-linkedin-in"></i> LinkedIn</p>
+            </ul>
+
+                </div>
+            </div>
+        </section>
+        
 
     </main>
 
@@ -43,4 +87,7 @@
 </body>
 <script src="/js/cargaFragmentos.js"></script>
 <script src="/js/usuarios.js"></script>
+<script>
+    lucide.createIcons();
+</script>
 </html>

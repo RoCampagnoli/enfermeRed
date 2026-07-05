@@ -27,8 +27,8 @@
   --color-texto: #1f2937;           /* texto principal en párrafos */
   --color-texto-secundario: #6b7280;/* subtítulos, taglines, ayuda */
   --color-borde: #e2e8f0;
-  --color-fondo: #ffffff;
-  --color-fondo-alterno: #f5f7f9;   /* secciones alternadas, cards */
+  --color-fondo: #d8d5d5;     /* fondo principal de la página */
+  --color-fondo-alterno: #e5e5e5;   /* secciones alternadas, cards */
  
   /* ---------- ESTADOS ---------- */
   --color-exito: #16a34a;

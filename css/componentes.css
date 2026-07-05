@@ -9,26 +9,35 @@ body{
 }
 
 body{
-    font-family: var(--font-principal);
-    margin:0;
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
+    height:100vh;
 
     display:flex;
     flex-direction:column;
 
-    min-height:100vh;
+    margin:0;
+
+    font-family:var(--font-principal);
+    color:var(--color-texto);
+
+    overflow:hidden; /* El body nunca scrollea */
 }
 
 /* =========================================================
 HEADERRRR
    ========================================================= */
-header{
+header,
+footer{
     flex-shrink:0;
-    padding-bottom:1rem;
 }
 
+main{
+    flex:1;
+    background:var(--color-fondo);
 
+    overflow-y:auto;
+
+    padding:1rem;
+}
 
 .navbar {
     background-color: var(--color-secundario-claro);
@@ -45,6 +54,7 @@ header{
 }
 
 .lista_links{
+    padding: 0;
     list-style: none;
     display: flex;
     gap: 1rem;
@@ -54,13 +64,8 @@ header{
 FOOTER
    ========================================================= */
 footer{
-    flex-shrink:0;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
     background:var(--color-secundario-claro);
     text-align:center;
-    padding-top:1rem;
 }
 
 /* =========================================================
