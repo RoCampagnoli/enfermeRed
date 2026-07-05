@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-   <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/componentes.css">
         <link rel="stylesheet" href="/css/home.css">
@@ -30,8 +29,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 <h2>donde mas importa:</h2>
                 <h2>tu hogar</h2>
 
-                <button class="btn-busqueda">Busco Enfermero</button>
-                <button class="btn-enfermero">Soy Enfermero</button>
+                <button class="btn-busqueda" id="btnBuscarEnfermero">Busco Enfermero</button>
+                <button class="btn-enfermero" id="btnSoyEnfermero">Soy Enfermero</button>
 
             </div>
         </section>
@@ -43,22 +42,30 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             <div class="contenido-contacto">
                 <div class="envio-msj">
                     <h3>Envianos un mensaje</h3>
-                    <form class="form-contacto">
+                    <form class="form-contacto" id="formContacto">
                         <div class="fila">
-                            <input type="text" placeholder="Nombre" class="input-nombre">
-                            <input type="text" placeholder="Apellido" class="input-apellido">
+                            <input type="text" placeholder="Nombre" class="input-nombre" id="inputNombre" required>
+                            <input type="text" placeholder="Apellido" class="input-apellido" id="inputApellido" required>
                         </div>
                         <div class="fila">
-                            <input type="email" placeholder="Correo electrónico" class="input-correo">
-                            <input type="number" placeholder="Teléfono" class="input-telefono">
+                            <input type="email" placeholder="Correo electrónico" class="input-correo" id="inputCorreo" required>
+                            <input type="number" placeholder="Teléfono" class="input-telefono" id="inputTelefono" required>
                         </div>
                         
-                        <textarea placeholder="Mensaje" class="input-mensaje"></textarea>
-                        <button class="btn-enviar">Enviar</button>
+                        <textarea placeholder="Mensaje" class="input-mensaje" id="inputMensaje" required></textarea>
+                        <button class="btn-enviar" id="btnEnviar">Enviar</button>
 
                     </form>
+                    <!-- Popup de éxito -->
+                    <div class="popup-overlay" id="popupOverlay">
+                        <div class="popup-contenido">
+                            <i data-lucide="check-circle" class="popup-icono"></i>
+                            <h3>¡Mensaje enviado!</h3>
+                            <p>Tu mensaje se envió con éxito. Nos pondremos en contacto a la brevedad.</p>
+                            <button class="btn-enviar" id="btnCerrarPopup">Cerrar</button>
+                        </div>
+                    </div>
                     
-
                 </div>
 
                 <div class="info-contacto">
@@ -86,6 +93,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     
 <script src="/js/cargaFragmentos.js"></script>
 <script src="/js/usuarios.js"></script>
+<script src="/js/home.js"></script>
 </body>
 
 </html>
