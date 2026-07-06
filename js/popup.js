@@ -14,6 +14,31 @@ function cerrarPopup(popupId) {
     document.body.style.overflow = '';
 }
 
+// Verificar si el usuario está logueado como paciente
+function verificarSesionPaciente() {
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
+    return usuarioLogueado && usuarioLogueado.tipo === 'paciente';
+}
+
+// Manejar el click en el botón Contratar
+function manejarClickContratar(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    const card = button.closest('.nurse-card');
+    
+    if (!verificarSesionPaciente()) {
+        // No hay sesión o no es paciente - mostrar popup de sesión requerida
+        abrirPopup('popupSesionRequerida');
+        return;
+    }
+    
+    // Es paciente - mostrar popups existentes
+    cardSeleccionadaParaContratar = card;
+    const enfermero = obtenerDatosEnfermeroDesdeCard(card);
+    poblarPopupConfirmar(enfermero);
+    abrirPopup('popupConfirmar');
+}
+
 let cardSeleccionadaParaContratar = null;
 
 function obtenerDatosEnfermeroDesdeCard(card) {
@@ -232,14 +257,7 @@ function poblarDiasDisponibles(dias) {
 
 function inicializarPopups() {
     document.querySelectorAll('[data-popup-target]').forEach((button) => {
-        const popupId = button.dataset.popupTarget;
-        button.addEventListener('click', () => {
-            const card = button.closest('.nurse-card');
-            cardSeleccionadaParaContratar = card;
-            const enfermero = obtenerDatosEnfermeroDesdeCard(card);
-            poblarPopupConfirmar(enfermero);
-            abrirPopup('popupConfirmar');
-        });
+        button.addEventListener('click', manejarClickContratar);
     });
 
     document.querySelectorAll('[data-popup-close]').forEach((button) => {
@@ -271,6 +289,14 @@ function inicializarPopups() {
             poblarDiasDisponibles(dias);
             cerrarPopup('popupConfirmar');
             abrirPopup('popupContratar');
+        });
+    }
+
+    // Botón "Iniciar sesión" del popup de sesión requerida
+    const btnIniciarSesionPopup = document.getElementById('btnIniciarSesionPopup');
+    if (btnIniciarSesionPopup) {
+        btnIniciarSesionPopup.addEventListener('click', () => {
+            window.location.href = 'iniciarSesion.html';
         });
     }
 }

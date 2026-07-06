@@ -545,3 +545,101 @@
         gap: 0.5rem;
     }
 }
+
+/* =========================================================
+   POPUP DE SESIÓN REQUERIDA
+   ========================================================= */
+
+.popup-sesion-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    text-align: center;
+    max-width: 420px;
+    padding: 2rem 1.5rem;
+}
+
+.popup-sesion-titulo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primario);
+    font-family: var(--font-principal);
+}
+
+.popup-sesion-mensaje {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-texto-secundario);
+    font-family: var(--font-secundaria);
+    line-height: 1.5;
+}
+
+.popup-sesion-botones {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.popup-sesion-botones button {
+    min-width: 140px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    border: 2px solid;
+    font-family: var(--font-principal);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.popup-sesion-botones .btn-busqueda {
+    background-color: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
+}
+
+.popup-sesion-botones .btn-busqueda:hover {
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.popup-sesion-botones .btn-enfermero {
+    background-color: white;
+    color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.popup-sesion-botones .btn-enfermero:hover {
+    background-color: var(--color-primario-50);
+    border-color: var(--color-primario);
+}
+
+@media (max-width: 520px) {
+    .popup-sesion-card {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .popup-sesion-titulo {
+        font-size: 1.25rem;
+    }
+
+    .popup-sesion-mensaje {
+        font-size: 0.95rem;
+    }
+
+    .popup-sesion-botones {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .popup-sesion-botones button {
+        min-width: auto;
+        width: 100%;
+    }
+}
