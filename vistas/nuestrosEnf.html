@@ -13,6 +13,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/componentes.css">
     <link rel="stylesheet" href="/css/nuestrosEnf.css">
+    <link rel="stylesheet" href="/css/popup.css">
 
 </head>
 <body>
@@ -58,7 +59,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <button class="btn-busqueda">Contratar</button>
+                    <button class="btn-busqueda" data-popup-target="popupContratar">Contratar</button>
                     <button class="btn-enfermero">Ver Perfil</button>
                 </div>
             </article>
@@ -95,7 +96,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <button class="btn-busqueda">Contratar</button>
+                    <button class="btn-busqueda" data-popup-target="popupContratar">Contratar</button>
                     <button class="btn-enfermero">Ver Perfil</button>
                 </div>
             </article>
@@ -132,16 +133,58 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <button class="btn-busqueda">Contratar</button>
+                    <button class="btn-busqueda" data-popup-target="popupContratar">Contratar</button>
                     <button class="btn-enfermero">Ver Perfil</button>
                 </div>
             </article>
         </section>
     </main>
+
+    <div class="popup-overlay" id="popupContratar">
+        <div class="popup-card">
+            <h2>Seleccione el día y horario que desea</h2>
+            <hr>
+            <div class="popup-section">
+                <strong>Días disponibles</strong>
+                <div class="popup-dropdown-container">
+                    <select class="popup-dropdown" id="popupDia">
+                        <option>Jueves</option>
+                        <option>Viernes</option>
+                        <option>Sábado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="popup-section">
+                <strong>Seleccione el horario que necesite</strong>
+                <div class="popup-horarios">
+                    <label><input type="checkbox" value="16h">16h</label>
+                    <label><input type="checkbox" value="17h">17h</label>
+                    <label><input type="checkbox" value="18h">18h</label>
+                    <label><input type="checkbox" value="19h">19h</label>
+                    <label><input type="checkbox" value="20h">20h</label>
+                </div>
+            </div>
+            <p class="popup-error" id="popupError"></p>
+            <p class="popup-resumen" id="popupResumen">Seleccionó: día Jueves, 17h, 18h, 19h.</p>
+            <p class="popup-total" id="popupTotal">El total a pagar es: $xxxxx.</p>
+            <div class="popup-actions">
+                <button class="btn-busqueda btn-pago " type="button" id="btnProcederPago">
+                    <span>Proceder al Pago</span>
+                    <span><img src="..\imagenes\mercadopago.svg" alt="Logo de Mercado Pago" width="50"></span>
+                </button>
+                <button class="btn-enfermero btn-cancelar" type="button" data-popup-close="popupContratar">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Cancelar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
 <div id="footer-component"></div>
 
 <script src="/js/cargaFragmentos.js"></script>
 <script src="/js/usuarios.js"></script>
+<script src="/js/popup.js"></script>
 </body>
 
 </html>
