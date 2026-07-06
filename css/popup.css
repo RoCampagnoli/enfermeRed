@@ -16,10 +16,219 @@
 .popup-card {
     width: min(560px, 100%);
     background: white;
-    border-radius: 1.75rem;
-    padding: 2rem;
+    border-radius: 1.25rem;
+    padding: 1rem;
     box-shadow: var(--shadow-md);
     text-align: center;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+}
+
+.popup-confirm-card {
+    max-width: 860px !important;
+    width: 100% !important;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Wireframe-style layout */
+.wireframe-style { padding: 1.25rem; max-width: 860px !important; width: 100% !important; margin: 0 auto; }
+
+.wireframe-header { display:flex; align-items:center; gap:1rem; grid-column: 1 / -1; border-bottom: 1px solid var(--color-borde); padding-bottom: 0.65rem; }
+.confirm-avatar-large img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.confirm-title h2 { margin: 0; font-size: 1.1rem; font-weight: var(--font-weight-medium); color: var(--color-primario); }
+.wireframe-header .btn-cerrar-popup { margin-left: auto; }
+
+.confirm-grid-wire { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.studies-card { grid-column: 1 / 2; }
+.matricula-card { grid-column: 2 / 3; align-self: start; }
+.studies-inner { background: var(--color-fondo-alterno); border:1px solid var(--color-borde); border-radius: 1.25rem; padding: 1rem; }
+.studies-inner h3 { margin: 0 0 0.6rem 0; color: var(--color-primario); }
+.studies-inner ul { margin:0; padding-left: 1rem; }
+
+.habilidades-card, .manejo-card { background: var(--color-fondo-alterno); border:1px solid var(--color-borde); border-radius: 1.25rem; padding: 0.9rem; }
+.habilidades-card h3, .manejo-card h3 { margin-top:0; color: var(--color-primario); }
+.habilidades-card ul, .manejo-card ul { margin: 0.6rem 0 0 1rem; }
+
+.disponibilidad-card { grid-column: 1 / 2; background: var(--color-fondo-alterno); border:1px solid var(--color-borde); border-radius: 1.25rem; padding: 0.8rem; }
+.price-card { grid-column: 2 / 3; display:flex; align-items:center; justify-content:center; }
+.price-inner { background: var(--color-fondo-alterno); border:1px solid var(--color-borde); border-radius: 1.25rem; padding: 1rem 1.2rem; min-width: 220px; text-align:center; }
+.price-amount { font-size: 1.25rem; color: var(--color-primario); font-weight: var(--font-weight-semibold); }
+
+.confirm-note { text-align:center; color: var(--color-texto-secundario); margin: 0 0 1rem; font-size: 0.95rem; }
+.confirm-action-center { text-align:center; margin-top: 0.4rem; }
+.btn-contratar { padding: 0.8rem 1.5rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
+
+@media (max-width: 820px) {
+    .confirm-grid-wire { grid-template-columns: 1fr; }
+    .matricula-card { grid-column: 1 / -1; }
+    .price-card { grid-column: 1 / -1; }
+}
+
+.confirm-body {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1rem;
+}
+
+.confirm-main-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.confirm-main-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.confirm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    grid-column: 1 / -1;
+}
+
+.confirm-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--color-primario);
+}
+
+.confirm-subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--color-texto-secundario);
+    font-size: 0.85rem;
+}
+
+.btn-cerrar-popup {
+    border: none;
+    background: transparent;
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.3rem 0.55rem;
+    border-radius: 0.75rem;
+}
+
+.btn-cerrar-popup:hover {
+    background: var(--color-primario-50);
+}
+
+.confirm-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.confirm-card-item {
+    background: var(--color-fondo-alterno);
+    border: 1px solid var(--color-borde);
+    border-radius: 1rem;
+    padding: 0.6rem 0.9rem;
+}
+
+.confirm-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 0.5rem;
+}
+
+.confirm-card-item strong {
+    display: block;
+    color: var(--color-primario);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+.confirm-disponibilidad {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.95rem 0.75rem;
+    background: var(--color-fondo-alterno);
+    border: 1px solid var(--color-borde);
+    border-radius: 1.25rem;
+    min-height: 56px;
+}
+
+.confirm-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: var(--color-secundario);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+.confirm-avatar img {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-primario-50);
+}
+
+.confirm-subtitle {
+    margin: 0.15rem 0 0;
+    color: var(--color-texto-secundario);
+}
+
+.confirm-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+}
+
+.confirm-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.confirm-list li {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-fondo-alterno);
+    border: 1px solid var(--color-borde);
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    color: var(--color-texto);
+    font-size: 0.88rem;
+    max-width: 100%;
+}
+
+.confirm-price {
+    margin-top: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    background: var(--color-fondo-alterno);
+    border: 1px solid var(--color-borde);
+    border-radius: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirm-price strong {
+    color: var(--color-primario);
+    font-weight: var(--font-weight-semibold);
 }
 
 .popup-card h2 {
@@ -191,6 +400,12 @@
 }
 
 @media (max-width: 520px) {
+    .popup-confirm-card {
+        grid-template-columns: 1fr;
+    }
+    .confirm-body { grid-template-columns: 1fr; }
+    .confirm-list ul { grid-template-columns: 1fr; }
+    .confirm-avatar img { width: 72px; height: 72px; }
     .popup-card {
         padding: 1.25rem;
     }
