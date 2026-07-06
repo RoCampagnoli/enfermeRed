@@ -1,0 +1,468 @@
+@import url(/css/variables.css);
+
+/* =========================================================
+   Vista Registro de Paciente
+   ========================================================= */
+
+.registro-paciente-main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 0;
+}
+
+.registro-paciente-titulo {
+    font-family: var(--font-principal);
+    color: var(--color-primario);
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 0.75rem 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.registro-paciente-titulo i {
+    font-size: 2.2rem;
+    color: var(--color-secundario);
+}
+
+.registro-paciente-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--color-fondo);
+}
+
+.registro-paciente-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 1.25rem;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid var(--color-borde);
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
+}
+
+#form-registro-paciente {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Filas de formulario (2 columnas) */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group label {
+    font-family: var(--font-secundaria);
+    font-size: 0.75rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 0.25rem;
+    padding-left: 0.25rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    font-family: var(--font-secundaria);
+    font-size: 0.875rem;
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-sm);
+    background: var(--color-fondo-alterno);
+    padding: 0.6rem 0.75rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+    resize: none;
+    min-height: 60px;
+    font-family: var(--font-secundaria);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(1, 170, 163, 0.12);
+}
+
+.form-group input.input-error,
+.form-group textarea.input-error {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.mensaje-error {
+    display: block;
+    min-height: 0.8rem;
+    font-family: var(--font-secundaria);
+    font-size: 0.65rem;
+    color: var(--color-error);
+    margin-top: 0.15rem;
+}
+
+/* Sección de archivos */
+.seccion-archivos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0.9rem;
+    background: var(--color-fondo-alterno);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-md);
+    position: relative;
+}
+
+.titulo-archivos {
+    margin: 0;
+    font-family: var(--font-principal);
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primario);
+}
+
+.lista-archivos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 30px;
+}
+
+.archivo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: white;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-secundaria);
+    font-size: 0.8rem;
+    color: var(--color-texto);
+}
+
+.archivo-item i {
+    font-size: 1rem;
+    color: var(--color-primario);
+}
+
+.archivo-item .nombre-archivo {
+    flex: 1;
+}
+
+.archivo-item .btn-eliminar-archivo {
+    background: transparent;
+    border: none;
+    color: var(--color-error);
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.archivo-item .btn-eliminar-archivo:hover {
+    color: var(--color-error);
+    opacity: 0.8;
+}
+
+.contenedor-cargar-archivo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.btn-cargar-archivo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.8rem;
+    background: white;
+    border: 2px solid var(--color-primario);
+    border-radius: 6px;
+    font-family: var(--font-principal);
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primario);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cargar-archivo:hover {
+    background: var(--color-primario-50);
+    border-color: var(--color-primario-claro);
+}
+
+.btn-cargar-archivo i {
+    font-size: 0.8rem;
+}
+
+.btn-cargar-archivo span {
+    display: none;
+}
+
+/* Botones de acción */
+.registro-paciente-acciones {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-enviar,
+.btn-cancelar {
+    font-family: var(--font-principal);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-semibold);
+    border-radius: 10px;
+    padding: 0.7rem 1.4rem;
+    min-width: 110px;
+    border: 2px solid var(--color-secundario);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-enviar {
+    background-color: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
+}
+
+.btn-enviar:hover {
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.btn-enviar:disabled {
+    background-color: var(--color-primario-claro);
+    border-color: var(--color-primario-claro);
+    cursor: not-allowed;
+}
+
+.btn-cancelar {
+    background-color: white;
+    color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.btn-cancelar:hover {
+    background-color: var(--color-primario-50);
+    border-color: var(--color-primario-claro);
+}
+
+.btn-enviar:focus-visible,
+.btn-cancelar:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+
+    .registro-paciente-card {
+        padding: 1rem;
+    }
+
+    .registro-paciente-titulo {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .registro-paciente-titulo i {
+        font-size: 1.7rem;
+    }
+
+    .registro-paciente-acciones {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .btn-enviar,
+    .btn-cancelar {
+        width: 100%;
+        min-width: auto;
+        padding: 0.65rem 1.2rem;
+    }
+
+    .seccion-archivos {
+        padding: 0.75rem;
+    }
+
+    .btn-cargar-archivo {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .registro-paciente-main {
+        padding: 0.75rem 0.75rem 0;
+    }
+
+    .registro-paciente-card {
+        padding: 0.9rem;
+        border-radius: var(--radius-md);
+        max-height: calc(100vh - 260px);
+    }
+
+    .registro-paciente-titulo {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .registro-paciente-titulo i {
+        font-size: 1.5rem;
+    }
+
+    #form-registro-paciente {
+        gap: 0.65rem;
+    }
+
+    .form-row {
+        gap: 0.6rem;
+    }
+
+    .form-group label {
+        font-size: 0.7rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .form-group textarea {
+        min-height: 50px;
+    }
+
+    .btn-cargar-archivo {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.6rem;
+    }
+
+    .btn-cargar-archivo i {
+        font-size: 0.7rem;
+    }
+}
+
+/* =========================================================
+   POPUP DE REGISTRO EXITOSO
+   ========================================================= */
+
+.popup-exito-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    text-align: center;
+    max-width: 420px;
+    padding: 2rem 1.5rem;
+}
+
+.popup-exito-icono {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--color-secundario-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--color-secundario);
+    border: 3px solid var(--color-secundario);
+}
+
+.popup-exito-titulo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primario);
+    font-family: var(--font-principal);
+}
+
+.popup-exito-mensaje {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-texto-secundario);
+    font-family: var(--font-secundaria);
+    line-height: 1.5;
+}
+
+.btn-exito {
+    min-width: 140px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    border: 2px solid var(--color-secundario);
+    background-color: var(--color-secundario);
+    color: white;
+    font-family: var(--font-principal);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-exito:hover {
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.btn-exito:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+    .popup-exito-card {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .popup-exito-icono {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+
+    .popup-exito-titulo {
+        font-size: 1.25rem;
+    }
+
+    .popup-exito-mensaje {
+        font-size: 0.95rem;
+    }
+
+    .btn-exito {
+        width: 100%;
+        min-width: auto;
+    }
+}
