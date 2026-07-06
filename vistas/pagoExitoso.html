@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Exitoso - enfermeRed</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link rel="stylesheet" href="../css/pagoExitoso.css">
+</head>
+<body>
+    <div id="header-component"></div>
+    <main class="main-home">
+        <section class="pago-exito-page">
+            <div class="pago-exito-card">
+                <h1>¡El pago fue procesado con éxito!</h1>
+                <i class="fa-solid fa-thumbs-up"></i>
+                <div class="pago-exito-actions">
+                    <button class="btn-busqueda" id="btnHablarEnfermera">
+                        <span>Hablar con la enfermera</span>
+                        <i class="fa-solid fa-comment"></i>
+                    </button>
+                    <button class="btn-busqueda" id="btnVolver">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Volver</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="footer-component"></div>
+
+    <script src="../js/cargaFragmentos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnVolver = document.getElementById('btnVolver');
+            const btnHablar = document.getElementById('btnHablarEnfermera');
+
+            if (btnVolver) {
+                btnVolver.addEventListener('click', () => {
+                    window.location.href = '/vistas/nuestrosEnf.html';
+                });
+            }
+
+            if (btnHablar) {
+                btnHablar.addEventListener('click', () => {
+                    alert('Iniciar chat con la enfermera.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+.popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 200;
+}
+
+.popup-overlay.mostrar {
+    display: flex;
+}
+
+.popup-card {
+    width: min(560px, 100%);
+    background: white;
+    border-radius: 1.75rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.popup-card h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: var(--color-primario);
+    font-weight: var(--font-weight-bold);
+}
+
+.popup-card hr {
+    border: 0;
+    height: 1px;
+    background: var(--color-borde);
+    margin: 1rem 0 1.5rem;
+}
+
+.popup-section {
+    margin-bottom: 1.4rem;
+}
+
+.popup-section strong {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--color-primario);
+}
+
+.popup-dropdown-container {
+    display: inline-flex;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+}
+
+.popup-dropdown {
+    width: 100%;
+    border: 1px solid var(--color-borde);
+    border-radius: 1rem;
+    padding: 0.95rem 1.2rem;
+    font-family: var(--font-principal);
+    font-size: 1rem;
+    appearance: none;
+    background: white;
+    color: var(--color-texto);
+    cursor: pointer;
+}
+
+.popup-dropdown-container::after {
+    content: "▼";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-texto-secundario);
+    pointer-events: none;
+}
+
+.popup-horarios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.popup-horarios label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-borde);
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.popup-horarios input {
+    width: 1rem;
+    height: 1rem;
+}
+
+.popup-error {
+    margin: 0 0 0.75rem;
+    color: var(--color-error);
+    font-size: 0.95rem;
+    text-align: center;
+    min-height: 1.2rem;
+}
+
+.popup-resumen,
+.popup-total {
+    margin: 0;
+    color: var(--color-texto);
+    font-size: 0.95rem;
+}
+
+.popup-total {
+    margin-top: 0.5rem;
+}
+
+.popup-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.popup-actions button {
+    min-height: 48px;
+    border-radius: 1rem;
+    border: 1px solid var(--color-secundario);
+    background: white;
+    color: var(--color-texto);
+    font-weight: var(--font-weight-semibold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+}
+
+.popup-actions button.btn-cancelar {
+    border-color: #f7c0c0;
+    background: #E57373;
+    color: white;
+}
+
+.popup-actions button.btn-pago {
+    border-color: #81C784;
+    background-color: #81C784 !important;
+    background: #81C784 !important;
+    color: white;
+}
+
+.btn-pago {
+    border-color: #81C784;
+    background-color: #81C784;
+    background: #81C784;
+    color: white;
+}
+
+.btn-pago .btn-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #388E3C;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.btn-cancelar {
+    border-color: #f7c0c0;
+    background: #E57373;
+    color: white;
+}
+
+.btn-cancelar i {
+    font-size: 1rem;
+}
+
+.btn-pago .btn-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 520px) {
+    .popup-card {
+        padding: 1.25rem;
+    }
+
+    .popup-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .popup-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .popup-horarios {
+        gap: 0.5rem;
+    }
+}
