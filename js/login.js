@@ -63,7 +63,7 @@ async function manejarLogin(event) {
         // Simulación breve para animar el botón y luego redirigir.
         await new Promise((resolve) => setTimeout(resolve, 600));
 
-        window.location.href = '/vistas/home.html';
+        window.location.href = 'home.html';
     } catch (error) {
         mostrarError('error-login', 'No pudimos iniciar sesión. Verificá tus datos e intentá de nuevo.');
     } finally {

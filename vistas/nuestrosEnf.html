@@ -10,9 +10,10 @@
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
    <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/componentes.css">
-    <link rel="stylesheet" href="/css/nuestrosEnf.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/nuestrosEnf.css">
+    <link rel="stylesheet" href="../css/popup.css">
 
 </head>
 <body>
@@ -28,7 +29,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <section class="nuestros-lista">
             <article class="nurse-card">
                 <div class="nurse-card-left">
-                    <div class="nurse-avatar"><i class="fa-solid fa-user-nurse"></i></div>
+                    <div class="nurse-avatar"><img src="../imagenes/avatar_soledad.png" alt="Soledad Perez"></div>
                     <div>
                         <h2>Soledad Perez</h2>
                         <p class="nurse-subtitulo">Especialista en Cardiología</p>
@@ -43,7 +44,30 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                             <span class="inactivo">S</span>
                             <span class="inactivo">D</span>
                         </div>
-                        <p class="nurse-precio">Precio por hora: $ xxxxxx</p>
+                        <p class="nurse-precio">Precio por hora: $60.000</p>
+                        <div class="nurse-studies" style="display:none;">
+                            <ul>
+                                <li>Licenciatura en Enfermería - Universidad Nacional de Buenos Aires</li>
+                                <li>Especialización en Cuidados Cardíacos - Instituto de Salud Cardio</li>
+                                <li>Curso Avanzado en Soporte Vital Básico y Avanzado</li>
+                            </ul>
+                        </div>
+                        <div class="nurse-habilidades" style="display:none;">
+                            <ul>
+                                <li>Interpretación básica de ECG.</li>
+                                <li>Administración de medicación intravenosa.</li>
+                                <li>Toma de signos vitales.</li>
+                                <li>Curaciones y oxigenoterapia.</li>
+                            </ul>
+                        </div>
+                        <div class="nurse-manejo" style="display:none;">
+                            <ul>
+                                <li>Infartos agudos de miocardio</li>
+                                <li>Insuficiencia cardíaca</li>
+                                <li>Arritmias</li>
+                                <li>Pacientes con marcapasos</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="nurse-card-center">
@@ -58,14 +82,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <button class="btn-busqueda">Contratar</button>
-                    <button class="btn-enfermero">Ver Perfil</button>
+                    <button class="btn-busqueda" data-popup-target="popupContratar">Contratar</button>
+                    <button class="btn-enfermero" onclick="window.location.href='perfilEnfContratar.html'">Ver Perfil</button>
                 </div>
             </article>
 
             <article class="nurse-card">
                 <div class="nurse-card-left">
-                    <div class="nurse-avatar"><i class="fa-solid fa-user-nurse"></i></div>
+                    <div class="nurse-avatar"><img src="../imagenes/avatar_juan.png" alt="Juan Manuel Lopez"></div>
                     <div>
                         <h2>Juan Manuel Lopez</h2>
                         <p class="nurse-subtitulo">Especialista en Traumatología</p>
@@ -80,7 +104,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                             <span class="inactivo">S</span>
                             <span class="inactivo">D</span>
                         </div>
-                        <p class="nurse-precio">Precio por hora: $ xxxxxx</p>
+                        <p class="nurse-precio">Precio por hora: $45.000</p>
+                        <div class="nurse-studies" style="display:none;">
+                            <ul>
+                                <li>Licenciatura en Enfermería - Universidad del Salvador</li>
+                                <li>Especialización en Traumatología - Centro Ortopédico</li>
+                            </ul>
+                        </div>
+                        <div class="nurse-habilidades" style="display:none;">
+                            <ul>
+                                <li>Atención post-operatoria</li>
+                                <li>Curaciones complejas</li>
+                            </ul>
+                        </div>
+                        <div class="nurse-manejo" style="display:none;">
+                            <ul>
+                                <li>Traumatología</li>
+                                <li>Movilización de pacientes</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="nurse-card-center">
@@ -95,14 +137,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <button class="btn-busqueda">Contratar</button>
-                    <button class="btn-enfermero">Ver Perfil</button>
+                    <button class="btn-busqueda" data-popup-target="popupContratar">Contratar</button>
+                    <button class="btn-enfermero" onclick="window.location.href='perfilEnfContratar.html'">Ver Perfil</button>
                 </div>
             </article>
 
             <article class="nurse-card">
                 <div class="nurse-card-left">
-                    <div class="nurse-avatar"><i class="fa-solid fa-user-nurse"></i></div>
+                    <div class="nurse-avatar"><img src="../imagenes/avatar_camila.png" alt="Camila Monserrat"></div>
                     <div>
                         <h2>Camila Monserrat</h2>
                         <p class="nurse-subtitulo">Especialista en Nefrología</p>
@@ -117,7 +159,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                             <span class="inactivo">S</span>
                             <span class="inactivo">D</span>
                         </div>
-                        <p class="nurse-precio">Precio por hora: $ xxxxxx</p>
+                        <p class="nurse-precio">Precio por hora: $50.000</p>
+                        <div class="nurse-studies" style="display:none;">
+                            <ul>
+                                <li>Licenciatura en Enfermería - Universidad Nacional de La Plata</li>
+                                <li>Curso en Hemodiálisis Domiciliaria</li>
+                            </ul>
+                        </div>
+                        <div class="nurse-habilidades" style="display:none;">
+                            <ul>
+                                <li>Control de diálisis domiciliaria</li>
+                                <li>Manejo de accesos vasculares</li>
+                            </ul>
+                        </div>
+                        <div class="nurse-manejo" style="display:none;">
+                            <ul>
+                                <li>Pacientes renales crónicos</li>
+                                <li>Cuidados paliativos</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="nurse-card-center">
@@ -132,16 +192,123 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                     </div>
-                    <button class="btn-busqueda">Contratar</button>
-                    <button class="btn-enfermero">Ver Perfil</button>
+                    <button class="btn-busqueda" data-popup-target="popupContratar">Contratar</button>
+                    <button class="btn-enfermero" onclick="window.location.href='perfilEnfContratar.html'">Ver Perfil</button>
                 </div>
             </article>
         </section>
     </main>
+
+    <div class="popup-overlay" id="popupContratar">
+        <div class="popup-card">
+            <h2>Seleccione el día y horario que desea</h2>
+            <hr>
+            <div class="popup-section">
+                <strong>Días disponibles</strong>
+                <div class="popup-dropdown-container">
+                    <select class="popup-dropdown" id="popupDia">
+                    </select>
+                </div>
+            </div>
+            <div class="popup-section">
+                <strong>Seleccione el horario que necesite</strong>
+                <div class="popup-horarios">
+                    <label><input type="checkbox" value="16h">16h</label>
+                    <label><input type="checkbox" value="17h">17h</label>
+                    <label><input type="checkbox" value="18h">18h</label>
+                    <label><input type="checkbox" value="19h">19h</label>
+                    <label><input type="checkbox" value="20h">20h</label>
+                </div>
+            </div>
+            <p class="popup-error" id="popupError"></p>
+            <p class="popup-resumen" id="popupResumen">Seleccionó: día Jueves, 17h, 18h, 19h.</p>
+            <p class="popup-total" id="popupTotal">El total a pagar es: $xxxxx.</p>
+            <div class="popup-actions">
+                <button class="btn-busqueda btn-pago " type="button" id="btnProcederPago">
+                    <span>Proceder al Pago</span>
+                    <span><img src="..\imagenes\mercadopago.svg" alt="Logo de Mercado Pago" width="50"></span>
+                </button>
+                <button class="btn-enfermero btn-cancelar" type="button" data-popup-close="popupContratar">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Cancelar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation popup (wireframe layout) -->
+    <div class="popup-overlay" id="popupConfirmar">
+        <div class="popup-card popup-confirm-card wireframe-style">
+            <div class="confirm-header wireframe-header">
+                <div class="confirm-avatar-large">
+                    <img id="confirmAvatar" src="../imagenes/avatar_soledad.png" alt="Avatar" />
+                </div>
+                <div class="confirm-title">
+                    <h2 id="confirmNombre">Nombre</h2>
+                </div>
+                <button class="btn-cerrar-popup" type="button" data-popup-close="popupConfirmar">✕</button>
+            </div>
+
+            <div class="confirm-grid-wire">
+                <div class="studies-card">
+                    <div class="studies-inner">
+                        <h3>Estudios</h3>
+                        <ul id="confirmStudiesList"></ul>
+                    </div>
+                </div>
+
+                <div class="matricula-card">
+                    <h3>Matrícula</h3>
+                    <div id="confirmMatricula">-</div>
+                </div>
+
+                <div class="habilidades-card">
+                    <h3>Habilidades</h3>
+                    <ul id="confirmHabilidadesList"></ul>
+                </div>
+
+                <div class="manejo-card">
+                    <h3>Manejo de Pacientes con:</h3>
+                    <ul id="confirmManejoList"></ul>
+                </div>
+
+                <div class="disponibilidad-card">
+                    <h3>Disponibilidad Horaria</h3>
+                    <div class="confirm-disponibilidad" id="confirmDisponibilidad"></div>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-inner">
+                        <h3>Precio por hora</h3>
+                        <div class="price-amount" id="confirmPrecio">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="confirm-note">Una vez contratado el enfermero, podrá contactarse con el mismo.</p>
+            <div class="confirm-action-center">
+                <button class="btn-enfermero btn-contratar" type="button" id="btnConfirmarContratacion">Contratar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para iniciar sesión como paciente -->
+    <div class="popup-overlay" id="popupSesionRequerida">
+        <div class="popup-card popup-sesion-card">
+            <h2 id="popupSesionTitulo" class="popup-sesion-titulo">Inicia sesión para continuar</h2>
+            <p id="popupSesionMensaje" class="popup-sesion-mensaje">Debe iniciar sesión como paciente para poder contratar a un enfermero.</p>
+            <div class="popup-sesion-botones">
+                <button class="btn-busqueda" id="btnIniciarSesionPopup">Iniciar sesión</button>
+                <button class="btn-enfermero" data-popup-close="popupSesionRequerida">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
 <div id="footer-component"></div>
 
-<script src="/js/cargaFragmentos.js"></script>
-<script src="/js/usuarios.js"></script>
+<script src="../js/cargaFragmentos.js"></script>
+<script src="../js/usuarios.js"></script>
+<script src="../js/popup.js"></script>
 </body>
 
 </html>

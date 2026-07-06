@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enfermeRed - Registro de Paciente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link rel="stylesheet" href="../css/registerPaciente.css">
+</head>
+
+<body>
+    <div id="header-component"></div>
+    <main class="registro-paciente-main">
+        <h1 class="registro-paciente-titulo"><i class="fas fa-user-check"></i> Registro de Paciente</h1>
+        <section class="registro-paciente-section">
+            <div class="registro-paciente-card">
+                <form id="form-registro-paciente" novalidate>
+                    <!-- Primera fila: Nombres y Apellido -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombres">Nombres</label>
+                            <input type="text" id="nombres" name="nombres" required>
+                            <span class="mensaje-error" id="error-nombres"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                            <span class="mensaje-error" id="error-apellido"></span>
+                        </div>
+                    </div>
+
+                    <!-- Segunda fila: Mail y Dirección -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mail">Mail</label>
+                            <input type="email" id="mail" name="mail" required>
+                            <span class="mensaje-error" id="error-mail"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" id="direccion" name="direccion" required>
+                            <span class="mensaje-error" id="error-direccion"></span>
+                        </div>
+                    </div>
+
+                    <!-- Tercera fila: Teléfono y Descripción de necesidades -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                            <span class="mensaje-error" id="error-telefono"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="necesidades">Breve descripción de las necesidades</label>
+                            <textarea id="necesidades" name="necesidades" required></textarea>
+                            <span class="mensaje-error" id="error-necesidades"></span>
+                        </div>
+                    </div>
+
+                    <!-- Sección de carga de archivos -->
+                    <div class="seccion-archivos">
+                        <h3 class="titulo-archivos">Carga todos tus antecedentes y estudios médicos (pdf., png., jpg.)</h3>
+                        
+                        <div class="lista-archivos" id="listaArchivos">
+                            <!-- Los archivos cargados se mostrarán aquí -->
+                        </div>
+
+                        <div class="contenedor-cargar-archivo">
+                            <label for="input-archivos" class="btn-cargar-archivo">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Cargar Archivo</span>
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </label>
+                            <input type="file" id="input-archivos" name="archivos" multiple accept=".pdf,.png,.jpg,.jpeg" style="display: none;">
+                        </div>
+
+                        <span class="mensaje-error" id="error-archivos"></span>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="registro-paciente-acciones">
+                        <button type="submit" class="btn-enviar">Enviar</button>
+                        <button type="button" class="btn-cancelar" onclick="window.location.href='../vistas/home.html'">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Popup de Registro Exitoso -->
+    <div class="popup-overlay" id="popupRegistroExitoso">
+        <div class="popup-card popup-exito-card">
+            <div class="popup-exito-icono">
+                <i class="fas fa-thumbs-up"></i>
+            </div>
+            <h2 class="popup-exito-titulo">¡Registro Exitoso!</h2>
+            <p class="popup-exito-mensaje">Tu cuenta ha sido creada correctamente. Bienvenido a enfermeRed.</p>
+            <button class="btn-exito" onclick="window.location.href='../vistas/home.html'">Continuar</button>
+        </div>
+    </div>
+
+    <div id="footer-component"></div>
+
+    <script src="../js/cargaFragmentos.js"></script>
+    <script src="../js/usuarios.js"></script>
+    <script src="../js/registerPaciente.js"></script>
+</body>
+</html>

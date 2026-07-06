@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // "Busco Enfermero" siempre lleva a la lista de enfermeros
     btnBuscarEnfermero.onclick = () => {
-        window.location.href = '/vistas/nuestrosEnf.html';
+        window.location.href = '../vistas/nuestrosEnf.html';
     };
 
     // "Soy Enfermero" depende de si hay sesión iniciada
@@ -16,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (usuario.tipo === 'enfermero') {
                 // Ya está logueado como enfermero -> va a su perfil
-                window.location.href = '/vistas/miPerfilEnferm.html';
+                window.location.href = '../vistas/miPerfilEnferm.html';
             } else {
                 // Está logueado pero como paciente -> no tiene perfil de enfermero
                 alert('Tu cuenta está registrada como paciente. Iniciá sesión con una cuenta de enfermero.');
-                window.location.href = '/vistas/iniciarSesion.html';
+                window.location.href = '../vistas/iniciarSesion.html';
             }
         } else {
             // No hay sesión -> va a iniciar sesión
-            window.location.href = '/vistas/iniciarSesion.html';
+            window.location.href = '../vistas/iniciarSesion.html';
         }
     };
 

@@ -1,10 +1,10 @@
 async function cargarComponentes() {
         // Carga el header
-    const resHeader = await fetch('/vistas/fragmentos/header.html');
+    const resHeader = await fetch('../vistas/fragmentos/header.html');
     document.getElementById('header-component').innerHTML = await resHeader.text();
 
         // Carga el footer
-    const resFooter = await fetch('/vistas/fragmentos/footer.html');
+    const resFooter = await fetch('../vistas/fragmentos/footer.html');
     document.getElementById('footer-component').innerHTML = await resFooter.text();
     
     lucide.createIcons();
@@ -34,22 +34,22 @@ function inicializarSesion() {
         linkMiPerfil.onclick = (e) => {
             e.preventDefault();
             if (usuario.tipo === 'enfermero') {
-                window.location.href = '/vistas/miPerfilEnferm.html';
+                window.location.href = 'miPerfilEnferm.html';
             } else {
-                window.location.href = '/vistas/miPerfilPaciente.html';
+                window.location.href = 'miPerfilPaciente.html';
             }
         };
 
         btnLogout.onclick = (e) => {
             e.preventDefault();
             localStorage.removeItem('usuarioLogueado');
-            window.location.href = '/vistas/home.html';
+            window.location.href = 'home.html';
         };
 
     } else {
         btnSesion.textContent = 'Iniciar sesión';
         btnSesion.onclick = () => {
-            window.location.href = '/vistas/iniciarSesion.html';
+            window.location.href = 'iniciarSesion.html';
         };
     }
 

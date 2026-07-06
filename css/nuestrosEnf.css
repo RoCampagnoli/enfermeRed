@@ -48,8 +48,8 @@
 }
 
 .nurse-avatar {
-    width: 84px;
-    height: 84px;
+    width: 104px;
+    height: 104px;
     border-radius: 50%;
     background: var(--color-secundario-50);
     display: grid;
@@ -57,6 +57,13 @@
     color: var(--color-secundario);
     font-size: 2rem;
     flex-shrink: 0;
+}
+
+.nurse-avatar img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .nurse-card h2 {
