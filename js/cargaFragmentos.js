@@ -22,7 +22,7 @@ function inicializarSesion() {
     if (!btnSesion) return;
 
     if (usuarioGuardado) {
-        const usuario = JSON.parse(usuarioGuardado); // 👈 esto faltaba
+        const usuario = JSON.parse(usuarioGuardado);
 
         btnSesion.textContent = 'Mi perfil';
 
