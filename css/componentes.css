@@ -109,6 +109,16 @@ button:focus-visible {
     outline: 2px solid var(--color-secundario);
     outline-offset: 2px;
 }
+
+.btn-login:hover,
+.btn-busqueda:hover,
+.btn-enfermero:hover,
+button:hover {
+    background-color: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
+}
+
 .footer-contacto, .footer-links{
     display:flex;
     flex-direction:column;
