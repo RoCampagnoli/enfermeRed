@@ -1,0 +1,191 @@
+@import url(/css/variables.css);
+/*PERFIL PACIENTE.CSS*/
+
+h1{
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.paciente-cards {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 3rem;
+    grid-template-rows: auto auto;
+    align-items: start; 
+    min-height: 0;
+}
+
+.info-paciente,
+.enfermeros-asoc,
+.medicamentos-vacunas,
+.mis-antecedentes{
+    background: var(--color-secundario);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+     max-height: 45rem; /* alto máximo cuando está expandida — ajustá este valor hasta que entren los 3 enfermeros */
+    transition: max-height 0.3s ease;
+
+}
+
+.section-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    flex-shrink: 0;
+}
+
+.section-header h2{
+    padding: 0;
+}
+
+.acciones-header{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.section-header button{
+    padding: 0.4rem;
+    aspect-ratio: 1 / 1;
+}
+
+.section-header button i{
+    width: 16px;
+    height: 16px;
+}
+
+.btn-toggle-seccion{
+    transition: transform 0.25s ease;
+}
+
+.contenido-seccion{
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    transition: opacity 0.2s ease;
+}
+
+/* Estado colapsado */
+.colapsada .contenido-seccion{
+    display: none;
+}
+
+.colapsada .btn-toggle-seccion{
+    transform: rotate(-180deg);
+}
+
+.card-info,
+.card-info-divs{
+    background: var(--color-secundario-50);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-info-divs{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.card-info p,
+.card-info-divs p{
+    margin: 0;
+}
+
+.card-info h4{
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-secundario);
+}
+
+.card-info strong{
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-texto);
+}
+
+.card-info span{
+    font-weight: 400;
+    color: var(--color-texto);
+    opacity: 0.85;
+}
+
+.dato-contacto{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.dato-contacto i{
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--color-secundario);
+}
+
+.dato-contacto p{
+    margin: 0;
+}
+
+.enfermero-header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.foto-enfermero{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.acciones-enfermero{
+    display: grid;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.acciones-enfermero button{
+    padding: 0.6rem;
+    aspect-ratio: 1 / 1;
+}
+
+.acciones-enfermero button i{
+    width: 20px;
+    height: 20px;
+}
+
+.btn-accion-seccion{
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+/* =========================================================
+RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px){
+    .paciente-cards{
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .info-paciente,
+    .enfermeros-asoc,
+    .medicamentos-vacunas,
+    .mis-antecedentes{
+        max-height: 60vh;
+    }
+}

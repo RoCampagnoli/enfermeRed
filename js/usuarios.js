@@ -1,123 +1,45 @@
-//==================================================
+//usuarios.js
+// ==================================================
 // USUARIOS POR DEFECTO
 //==================================================
 
 const usuariosBase = [
     {
         id: 1,
-        nombre: "Juan Pérez",
+        nombre: "Juan",
+        apellido: "Pérez",
         email: "paciente@test.com",
         password: "1234",
-        tipo: "paciente"
+        tipo: "paciente",
+        dni: "30123456",
+        edad: 34,
+        sexo: "Masculino",
+        direccion: "Av. Siempre Viva 742",
+        telefono: "011-4555-1234",
+        celular: "11-6555-9876",
+        tipoSangre: "O+",
+        alergias: "-",
+        diagnostico: "Hipertensión, Diabetes",
+        // Nueva estructura de medicamentos asociada al usuario
+        medicamentos: [
+            {
+                id: "med-1",
+                nombre: "Metformina",
+                tipo: "pastilla", // pastilla, inyeccion, jarabe, etc.
+                dias: ["L", "Mi", "V"], // Días seleccionados
+                frecuencia: "2", // Veces al día
+                horarios: ["08:00", "20:00"],
+                duracion: "30 días",
+                indicaciones: "Tomar después de las comidas para controlar la Diabetes."
+            }
+        ]
     },
     {
         id: 2,
-        nombre: "María Gómez",
+        nombre: "María",
+        apellido: "Gómez",
         email: "enfermero@test.com",
         password: "1234",
         tipo: "enfermero"
     }
 ];
-
-
-//==================================================
-// GESTIÓN DE USUARIOS
-//==================================================
-
-// Inicializa el almacenamiento con los usuarios por defecto
-// si todavía no existen en el localStorage.
-function inicializarUsuarios() {
-
-    if (!localStorage.getItem("usuarios")) {
-        localStorage.setItem(
-            "usuarios",
-            JSON.stringify(usuariosBase)
-        );
-    }
-
-}
-
-// Devuelve todos los usuarios registrados.
-function obtenerUsuarios() {
-
-    return JSON.parse(localStorage.getItem("usuarios")) || [];
-
-}
-
-// Busca un usuario por su correo electrónico.
-function buscarUsuarioPorEmail(email) {
-
-    const usuarios = obtenerUsuarios();
-
-    return usuarios.find(
-        usuario => usuario.email === email
-    );
-
-}
-
-// Busca un usuario por su ID.
-function buscarUsuarioPorId(id) {
-
-    const usuarios = obtenerUsuarios();
-
-    return usuarios.find(
-        usuario => usuario.id === id
-    );
-
-}
-
-
-//==================================================
-// REGISTRO DE USUARIOS
-//==================================================
-
-// Registra un nuevo usuario verificando que el correo
-// no se encuentre previamente registrado.
-function registrarUsuario(usuarioNuevo) {
-
-    const usuarios = obtenerUsuarios();
-
-    // Verificar email repetido
-    if (buscarUsuarioPorEmail(usuarioNuevo.email)) {
-        return {
-            exito: false,
-            mensaje: "Ya existe un usuario con ese correo."
-        };
-    }
-
-    // Generar ID automático
-    usuarioNuevo.id = usuarios.length + 1;
-
-    usuarios.push(usuarioNuevo);
-
-    localStorage.setItem(
-        "usuarios",
-        JSON.stringify(usuarios)
-    );
-
-    return {
-        exito: true,
-        mensaje: "Usuario registrado correctamente."
-    };
-
-}
-
-
-//==================================================
-// INICIO DE SESIÓN
-//==================================================
-
-// Valida las credenciales ingresadas.
-// Devuelve el objeto usuario si las credenciales son correctas,
-// o undefined en caso contrario.
-function validarLogin(email, password) {
-
-    const usuarios = obtenerUsuarios();
-
-    return usuarios.find(
-        usuario =>
-            usuario.email === email &&
-            usuario.password === password
-    );
-
-}

@@ -1,28 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>enfermeRed</title>
-        <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/componentes.css">
+    <link rel="stylesheet" href="/css/perfilPaciente.css">
+    <link rel="stylesheet" href="/css/popup.css">
+
 
 </head>
+
 <body>
- <div id="header-component"></div>
-    <main>
-        <h1>Mi Perfil de Paciente</h1>
-        <p>Esta es la página de perfil de paciente.</p>
+    <div id="header-component"></div>
+    <main class="perfil-paciente-main">
+
+        <h1>Hola, <span id="dato-nombre-saludo"></span>! Bienvenido</h1>
+        <section class="paciente-cards">
+
+            <section class="info-paciente">
+                <div class="section-header">
+                    <h2>Mis datos</h2>
+                    <div class="acciones-header">
+                        <button id="btnEditarDatos" aria-label="Editar datos personales"><i
+                                data-lucide="pencil"></i></button>
+                        <button class="btn-toggle-seccion" aria-label="Contraer sección">
+                            <i data-lucide="chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="contenido-seccion">
+                    <div class="card-info">
+                        <h4>Datos personales</h4>
+                        <div>
+                            <p><strong>Nombre:</strong> <span id="dato-nombre"></span></p>
+                            <p><strong>Apellido:</strong> <span id="dato-apellido"></span></p>
+                            <p><strong>DNI:</strong> <span id="dato-dni"></span></p>
+                            <p><strong>Edad:</strong> <span id="dato-edad"></span></p>
+                            <p><strong>Sexo:</strong> <span id="dato-sexo"></span></p>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h4>Datos de contacto</h4>
+                        <div class="dato-contacto">
+                            <i data-lucide="map-pin"></i>
+                            <p><span id="dato-direccion"></span></p>
+                        </div>
+                        <div class="dato-contacto">
+                            <i data-lucide="phone"></i>
+                            <p><span id="dato-telefono"></span></p>
+                        </div>
+                        <div class="dato-contacto">
+                            <i data-lucide="mail"></i>
+                            <p><span id="dato-correo"></span></p>
+                        </div>
+                        <div class="dato-contacto">
+                            <i data-lucide="smartphone"></i>
+                            <p><span id="dato-celular"></span></p>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h4>Datos de salud</h4>
+                        <div>
+                            <p><strong>Tipo de sangre:</strong> <span id="dato-tipo-sangre"></span></p>
+                            <p><strong>Alergias:</strong> <span id="dato-alergias"></span></p>
+                            <p><strong>Diagnóstico:</strong> <span id="dato-diagnostico"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="enfermeros-asoc">
+                <div class="section-header">
+                    <h2>Enfermeros asociados</h2>
+                    <button class="btn-toggle-seccion" aria-label="Contraer sección">
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="contenido-seccion">
+                    <div class="card-info-divs">
+                        <div class="enfermero-header">
+                            <img src="/imagenes/avatar_camila.png" alt="Foto de [Nombre del Enfermero]"
+                                class="foto-enfermero">
+                            <div>
+                                <h3>[Nombre del Enfermero]</h3>
+                                <p>especialidad</p>
+                                <p>universidad - matricula</p>
+                            </div>
+                        </div>
+                        <div class="acciones-enfermero">
+                            <button aria-label="Llamar"><i data-lucide="phone"></i></button>
+                            <button aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="card-info-divs">
+                        <div class="enfermero-header">
+                            <img src="/imagenes/avatar_camila.png" alt="Foto de [Nombre del Enfermero]"
+                                class="foto-enfermero">
+                            <div>
+                                <h3>[Nombre del Enfermero]</h3>
+                                <p>especialidad</p>
+                                <p>universidad - matricula</p>
+                            </div>
+                        </div>
+                        <div class="acciones-enfermero">
+                            <button aria-label="Llamar"><i data-lucide="phone"></i></button>
+                            <button aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="card-info-divs">
+                        <div class="enfermero-header">
+                            <img src="/imagenes/avatar_camila.png" alt="Foto de [Nombre del Enfermero]"
+                                class="foto-enfermero">
+                            <div>
+                                <h3>[Nombre del Enfermero]</h3>
+                                <p>especialidad</p>
+                                <p>universidad - matricula</p>
+                            </div>
+                        </div>
+                        <div class="acciones-enfermero">
+                            <button aria-label="Llamar"><i data-lucide="phone"></i></button>
+                            <button aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="btn-accion-seccion">buscar enfermeros</button>
+
+            </section>
+
+            <section class="medicamentos-vacunas">
+                <div class="section-header">
+                    <h2>Mis medicamentos</h2>
+                    <button class="btn-toggle-seccion" aria-label="Contraer sección">
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="contenido-seccion" id="contenedor-medicamentos">
+                </div>
+
+                <button class="btn-accion-seccion" id="btnNuevoMedicamento">Cargar nuevo medicamento</button>
+            </section>
+
+            <section class="mis-antecedentes">
+                <div class="section-header">
+                    <h2>Mis antecedentes médicos</h2>
+                    <button class="btn-toggle-seccion" aria-label="Contraer sección">
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="contenido-seccion">
+                    <div class="card-info-divs">
+                        <div>
+                            <h3>Enfermedad 1: [Nombre de la Enfermedad]</h3>
+                            <p>Fecha de diagnóstico: [Fecha de diagnóstico]</p>
+                            <p>Tratamiento: [Tratamiento]</p>
+                        </div>
+                        <div>
+                            <button>editar</button>
+                            <button>borrar</button>
+                        </div>
+                    </div>
+                    <div class="card-info-divs">
+                        <div>
+                            <h3>Enfermedad 2: [Nombre de la Enfermedad]</h3>
+                            <p>Fecha de diagnóstico: [Fecha de diagnóstico]</p>
+                            <p>Tratamiento: [Tratamiento]</p>
+                        </div>
+                        <div>
+                            <button>editar</button>
+                            <button>borrar</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-accion-seccion">Cargar nuevo antecedente</button>
+
+            </section>
+        </section>
+
+        <!-- Modal de edición -->
+        <div class="popup-overlay" id="popupEditarDatos">
+            <div class="popup-contenido popup-formulario">
+                <div class="popup-formulario-header">
+                    <h3>Editar mis datos</h3>
+                    <button type="button" id="btnCerrarEditar" aria-label="Cerrar"><i data-lucide="x"></i></button>
+                </div>
+
+                <form id="formEditarDatos">
+                    <fieldset>
+                        <legend>Datos personales</legend>
+                        <label for="inputEditarNombre">Nombre</label>
+                        <input type="text" id="inputEditarNombre" name="nombre">
+                        <label for="inputEditarApellido">Apellido</label>
+                        <input type="text" id="inputEditarApellido" name="apellido">
+                        <label for="inputEditarDni">DNI</label>
+                        <input type="text" id="inputEditarDni" name="dni">
+                        <label for="inputEditarEdad">Edad</label>
+                        <input type="number" id="inputEditarEdad" name="edad" min="0">
+                        <label for="inputEditarSexo">Sexo</label>
+                        <input type="text" id="inputEditarSexo" name="sexo">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Datos de contacto</legend>
+                        <label for="inputEditarDireccion">Dirección</label>
+                        <input type="text" id="inputEditarDireccion" name="direccion">
+                        <label for="inputEditarTelefono">Teléfono</label>
+                        <input type="text" id="inputEditarTelefono" name="telefono">
+                        <label for="inputEditarCorreo">Correo electrónico</label>
+                        <input type="email" id="inputEditarCorreo" name="email">
+                        <label for="inputEditarCelular">Celular</label>
+                        <input type="text" id="inputEditarCelular" name="celular">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Datos de salud</legend>
+                        <label for="inputEditarTipoSangre">Tipo de sangre</label>
+                        <input type="text" id="inputEditarTipoSangre" name="tipoSangre">
+                        <label for="inputEditarAlergias">Alergias</label>
+                        <input type="text" id="inputEditarAlergias" name="alergias">
+                        <label for="inputEditarDiagnostico">Diagnóstico</label>
+                        <input type="text" id="inputEditarDiagnostico" name="diagnostico">
+                    </fieldset>
+
+                    <button type="submit" class="btn-enviar">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Popup de éxito -->
+        <div class="popup-overlay" id="popupEdicionExitosa">
+            <div class="popup-contenido">
+                <i data-lucide="check-circle" class="popup-icono"></i>
+                <h3>¡Datos actualizados!</h3>
+                <p>Tus datos se guardaron correctamente.</p>
+                <button class="btn-enviar" id="btnCerrarPopupExito">Cerrar</button>
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popupMedicamento">
+    <div class="popup-contenido popup-formulario">
+        <div class="popup-formulario-header">
+            <h3 id="tituloModalMedicamento">Cargar Medicamento</h3>
+            <button type="button" id="btnCerrarMedicamento" aria-label="Cerrar"><i data-lucide="x"></i></button>
+        </div>
+
+        <form id="formMedicamento">
+            <input type="hidden" id="inputMedId" name="medId">
+
+            <fieldset>
+                <legend>Información del Medicamento</legend>
+                
+                <label for="inputMedNombre">Nombre del Medicamento</label>
+                <input type="text" id="inputMedNombre" required placeholder="Ej: Paracetamol">
+
+                <label for="selectMedTipo">Tipo de presentación</label>
+                <select id="selectMedTipo" required>
+                    <option value="pastilla">Pastilla / Comprimido</option>
+                    <option value="inyeccion">Inyección / Ampolla</option>
+                    <option value="jarabe">Jarabe / Líquido</option>
+                    <option value="gotas">Gotas</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Frecuencia y Duración</legend>
+
+                <label>Días de la semana</label>
+                <div class="dias-semana-checkboxes" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <label><input type="checkbox" name="dias" value="Lun"> Lun</label>
+                    <label><input type="checkbox" name="dias" value="Mar"> Mar</label>
+                    <label><input type="checkbox" name="dias" value="Mie"> Mie</label>
+                    <label><input type="checkbox" name="dias" value="Jue"> Jue</label>
+                    <label><input type="checkbox" name="dias" value="Vie"> Vie</label>
+                    <label><input type="checkbox" name="dias" value="Sab"> Sáb</label>
+                    <label><input type="checkbox" name="dias" value="Dom"> Dom</label>
+                </div>
+
+                <label for="inputMedFrecuencia">¿Cuántas veces al día?</label>
+                <input type="number" id="inputMedFrecuencia" min="1" max="24" placeholder="Ej: 2" required>
+
+                <label for="inputMedHorarios">Horarios (separados por coma)</label>
+                <input type="text" id="inputMedHorarios" placeholder="Ej: 08:00, 20:00" required>
+
+                <label for="inputMedDuracion">Duración del tratamiento</label>
+                <input type="text" id="inputMedDuracion" placeholder="Ej: 7 días, 3 meses, Crónico" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Indicaciones</legend>
+                <label for="txtMedIndicaciones">Notas adicionales</label>
+                <textarea id="txtMedIndicaciones" rows="3" placeholder="Ej: Para la presión. Tomar en ayunas."></textarea>
+            </fieldset>
+
+            <button type="submit" class="btn-enviar">Guardar Medicamento</button>
+        </form>
+    </div>
+</div>
+
     </main>
-<div id="footer-component"></div>
-<script src="/js/cargaFragmentos.js"></script>
-<script src="/js/usuarios.js"></script>
+    <div id="footer-component"></div>
+
+    <script src="/js/cargaFragmentos.js"></script>
+    <script src="/js/usuarios.js"></script>
+    <script src="/js/gestionUsuarios.js"></script>
+    <script src="/js/cargaInformacionUsuario.js"></script>
+    <script src="/js/toggleSecciones.js"></script>
+    <script src="/js/miPerfilPaciente.js"></script>
+
 </body>
 
 </html>

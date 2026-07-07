@@ -162,34 +162,3 @@ textarea{
 
 }
 
-.popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-}
-
-.popup-overlay.mostrar {
-    display: flex;
-}
-
-.popup-contenido {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: var(--radius-md);
-    text-align: center;
-    max-width: 350px;
-}
-
-.popup-icono {
-    color: green;
-    width: 48px;
-    height: 48px;
-    margin-bottom: 1rem;
-}
