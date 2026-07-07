@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarDatosPaciente(paciente);
     renderizarEnfermerosAsociados(paciente.enfermerosAsociados || []);
 
+    inicializarPopup('popupWhatsapp', 'btnCerrarWhatsapp');
+
     // ---------- Modal de edición ----------
     const modalEditar = document.getElementById("popupEditarDatos");
     const popupExito = document.getElementById("popupEdicionExitosa");
@@ -114,12 +116,16 @@ function renderizarEnfermerosAsociados(enfermeros) {
             </div>
             <div class="acciones-enfermero">
                 <button aria-label="Llamar"><i data-lucide="phone"></i></button>
-                <button aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
+                <button class="btn-enviar-mensaje-enfermero" aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
             </div>
         </div>
     `).join('');
 
     if (window.lucide) lucide.createIcons();
+
+    document.querySelectorAll('.btn-enviar-mensaje-enfermero').forEach((btn) => {
+        btn.addEventListener('click', () => abrirPopup('popupWhatsapp'));
+    });
 }
 
 function renderizarDatosPaciente(paciente) {

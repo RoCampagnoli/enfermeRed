@@ -34,13 +34,29 @@
             </div>
         </section>
     </main>
+
+    <!-- Popup de redirección a WhatsApp (reutilizable) -->
+    <div class="popup-overlay" id="popupWhatsapp">
+        <div class="popup-card popup-whatsapp-card">
+            <div class="popup-formulario-header">
+                <h3>Redirigiendo a WhatsApp</h3>
+                <button type="button" id="btnCerrarWhatsapp" aria-label="Cerrar"><i data-lucide="x"></i></button>
+            </div>
+            <img src="..\imagenes\whatsapp.png" alt="Logo de WhatsApp" class="popup-whatsapp-icono">
+            <p>Te estamos redirigiendo a WhatsApp para que puedas continuar la conversación.</p>
+        </div>
+    </div>
+
     <div id="footer-component"></div>
 
     <script src="../js/cargaFragmentos.js"></script>
+    <script src="../js/popup.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const btnVolver = document.getElementById('btnVolver');
             const btnHablar = document.getElementById('btnHablarEnfermera');
+
+            inicializarPopup('popupWhatsapp', 'btnCerrarWhatsapp');
 
             if (btnVolver) {
                 btnVolver.addEventListener('click', () => {
@@ -50,7 +66,7 @@
 
             if (btnHablar) {
                 btnHablar.addEventListener('click', () => {
-                    alert('Iniciar chat con la enfermera.');
+                    abrirPopup('popupWhatsapp');
                 });
             }
         });

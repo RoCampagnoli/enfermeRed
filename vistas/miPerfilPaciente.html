@@ -205,6 +205,18 @@
             </div>
         </div>
 
+        <!-- Popup de redirección a WhatsApp (reutilizable) -->
+        <div class="popup-overlay" id="popupWhatsapp">
+            <div class="popup-card popup-whatsapp-card">
+                <div class="popup-formulario-header">
+                    <h3>Redirigiendo a WhatsApp</h3>
+                    <button type="button" id="btnCerrarWhatsapp" aria-label="Cerrar"><i data-lucide="x"></i></button>
+                </div>
+                <img src="../imagenes/whatsapp.png" alt="Logo de WhatsApp" class="popup-whatsapp-icono">
+                <p>Te estamos redirigiendo a WhatsApp para que puedas continuar la conversación.</p>
+            </div>
+        </div>
+
         <div class="popup-overlay" id="popupMedicamento">
             <div class="popup-contenido popup-formulario">
                 <div class="popup-formulario-header">
@@ -291,6 +303,7 @@
     <script src="../js/cargaFragmentos.js"></script>
     <script src="../js/usuarios.js"></script>
     <script src="../js/gestionUsuarios.js"></script>
+    <script src="../js/popup.js"></script>
     <script src="../js/cargaInformacionUsuario.js"></script>
     <script src="../js/miPerfilPaciente.js"></script>
 
