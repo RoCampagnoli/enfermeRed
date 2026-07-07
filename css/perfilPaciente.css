@@ -11,11 +11,39 @@ h2{
     padding: 0.5rem 0;
 }
 
+/* =========================================================
+   UNIFICACIÓN DE COLOR EN TÍTULOS Y SUBTÍTULOS
+   ========================================================= */
+
+/* 1. Nombre de los Enfermeros (dentro de las cards de la sección enfermeros) */
+.enfermero-header h3, 
+.enfermero-header strong {
+    color: var(--color-primario) !important;
+    font-family: var(--font-principal);
+}
+
+/* 2. Nombre de las Enfermedades (en la sección de antecedentes médicos) */
+.mis-antecedentes h3,
+.mis-antecedentes .card-info-divs strong {
+    color: var(--color-primario) !important;
+    font-family: var(--font-principal);
+}
+
+/* 3. Subtítulos de tus Datos (Datos Personales, Datos de Contacto, Datos de Salud) */
+.card-info h4 {
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-secundario);
+    /* Cambiamos el color del subtítulo al azul principal */
+    color: var(--color-primario); 
+    font-family: var(--font-principal);
+    font-size: var(--font-size-md, 1.1rem);
+}
 .paciente-cards {
     padding: 1rem;
     display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 3rem;
+    grid-template-columns: 3fr 4fr;
+    gap: 2.5rem;
     grid-template-rows: auto auto;
     align-items: start; 
     min-height: 0;
@@ -91,9 +119,11 @@ h2{
     margin-bottom: 0.5rem;
 }
 
-.card-info-divs{
+.card-info-divs {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 1fr auto; /* Deja que el texto ocupe todo el espacio y la botonera solo lo suyo */
+    gap: 1rem;
+    align-items: center; /* Centra verticalmente los botones respecto a la card */
 }
 
 .card-info p,
@@ -150,28 +180,240 @@ h2{
     flex-shrink: 0;
 }
 
-.acciones-enfermero{
-    display: grid;
-    grid-template-rows: 1fr;
+/* Contenedor vertical de acciones */
+.acciones-enfermero {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    flex-shrink: 0;
+}
+/* Forzamos a que los botones sean cuadrados pequeños (como el botón "editar" de antecedentes) */
+.acciones-enfermero button {
+    /* Forzamos el tamaño cuadrado pequeño manteniendo las propiedades base de tu sitio */
+    width: 38px !important;
+    height: 38px !important;
+    min-height: 38px !important; /* Evita que el layout del layout global lo estire */
+    padding: 0 !important;       /* Reseteamos el padding de 0.75rem 1rem para que no se deforme */
+    
+    /* Aseguramos que use la estructura de flex centrada */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Variación específica para el botón de borrar (en lugar del borde turquesa estándar) */
+.acciones-enfermero button.btn-borrar-med {
+    border-color: var(--color-error) !important;
+    color: var(--color-error) !important;
 }
 
-.acciones-enfermero button{
-    padding: 0.6rem;
-    aspect-ratio: 1 / 1;
+/* Efecto hover específico para el botón de borrar */
+.acciones-enfermero button.btn-borrar-med:hover {
+    background-color: #fdf2f2 !important; /* Un rojo/crema muy suave al pasar el mouse */
 }
 
-.acciones-enfermero button i{
+/* Tamaño controlado de los íconos Lucide internos */
+.acciones-enfermero button i {
+    width: 16px !important;
+    height: 16px !important;
+}
+/* =========================================================
+   BLOQUE DE TEXTO E ICONOS DEL MEDICAMENTO
+   ========================================================= */
+
+.med-detalle-bloque {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.med-info-texto h3 {
+    margin: 0;
+    font-family: var(--font-principal);
+    font-size: var(--font-size-lg);
+    color: var(--color-primario);
+}
+
+.med-info-texto h3 small {
+    font-weight: var(--font-weight-regular);
+    color: var(--color-texto-secundario);
+    font-size: var(--font-size-sm);
+}
+
+.med-info-texto p {
+    margin: 0.25rem 0;
+    font-family: var(--font-secundaria);
+    font-size: var(--font-size-sm);
+    color: var(--color-texto);
+}
+
+.med-info-texto .med-indicaciones {
+    font-style: italic;
+    color: var(--color-texto-secundario);
+}
+
+/* Icono redondo del tipo de medicina */
+.icono-med-tipo {
+    background: var(--color-secundario-50);
+    padding: 0.65rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icono-med-tipo i {
+    color: var(--color-secundario);
     width: 20px;
     height: 20px;
 }
 
-.btn-accion-seccion{
-    flex-shrink: 0;
-    margin-top: 0.5rem;
+/* Burbujas Redondas de los Días de la Semana */
+.med-dias-lista {
+    display: flex;
+    gap: 0.4rem;
+    margin: 0.5rem 0;
+}
+
+.med-dia-burbuja {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-principal);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dia-activo {
+    background: var(--color-primario);
+    color: white;
+}
+
+.dia-inactivo {
+    background: var(--color-fondo);
+    color: var(--color-texto-secundario);
+    opacity: 0.7;
+}
+
+/* =========================================================
+   REDISEÑO DE MODALES DE MEDICAMENTOS (UNIFICADO)
+   ========================================================= */
+
+/* Posicionar los modales arriba en la pantalla, no clavados en el centro */
+
+#popupMedicamento .popup-contenido .popup-formulario {
+    margin-top: 5vh;
+    box-sizing: border-box;
+}
+
+/* Eliminar los fieldset antiguos y transformarlos en secciones limpias */
+#formMedicamento fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+}
+
+#formMedicamento legend {
+    display: block;
     width: 100%;
+    font-family: var(--font-principal);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primario);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 0.25rem;
+}
+
+/* Estilo unificado para inputs, selects y textareas (Copiado de Editar Datos) */
+#formMedicamento input[type="text"],
+#formMedicamento input[type="number"],
+#formMedicamento select,
+#formMedicamento textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-secundario);
+    border-radius: var(--radius-md, 12px);
+    font-family: var(--font-secundaria);
+    font-size: var(--font-size-base);
+    color: var(--color-texto);
+    background-color: white;
+    outline: none;
+    margin-top: 0.4rem;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s ease;
+}
+
+#formMedicamento input:focus,
+#formMedicamento select:focus,
+#formMedicamento textarea:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px var(--color-primario-50);
+}
+
+/* Separación del bloque de Frecuencia y Horarios */
+.grupo-frecuencia-horarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.grupo-frecuencia-horarios div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- BURBUJAS DE DÍAS SELECCIONABLES (CIRCULARES) --- */
+.med-dias-seleccion {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.5rem 0 1rem;
+}
+
+/* Escondemos el checkbox original horrible */
+.med-dias-seleccion input[type="checkbox"] {
+    display: none;
+}
+
+/* Convertimos el label en el círculo interactivo */
+.med-dias-seleccion label {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-fondo-alterno, #e5e5e5);
+    color: var(--color-texto-secundario);
+    font-family: var(--font-principal);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--color-borde);
+    user-select: none;
+}
+
+/* Estado cuando el checkbox invisible está seleccionado */
+.med-dias-seleccion input[type="checkbox"]:checked + label {
+    background: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+}
+
+/* Hover para los círculos */
+.med-dias-seleccion label:hover {
+    background: var(--color-secundario-100);
+    color: var(--color-primario);
 }
 /* =========================================================
 RESPONSIVE

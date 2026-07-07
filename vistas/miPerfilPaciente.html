@@ -253,64 +253,84 @@
         </div>
 
         <div class="popup-overlay" id="popupMedicamento">
-    <div class="popup-contenido popup-formulario">
-        <div class="popup-formulario-header">
-            <h3 id="tituloModalMedicamento">Cargar Medicamento</h3>
-            <button type="button" id="btnCerrarMedicamento" aria-label="Cerrar"><i data-lucide="x"></i></button>
-        </div>
-
-        <form id="formMedicamento">
-            <input type="hidden" id="inputMedId" name="medId">
-
-            <fieldset>
-                <legend>Información del Medicamento</legend>
-                
-                <label for="inputMedNombre">Nombre del Medicamento</label>
-                <input type="text" id="inputMedNombre" required placeholder="Ej: Paracetamol">
-
-                <label for="selectMedTipo">Tipo de presentación</label>
-                <select id="selectMedTipo" required>
-                    <option value="pastilla">Pastilla / Comprimido</option>
-                    <option value="inyeccion">Inyección / Ampolla</option>
-                    <option value="jarabe">Jarabe / Líquido</option>
-                    <option value="gotas">Gotas</option>
-                </select>
-            </fieldset>
-
-            <fieldset>
-                <legend>Frecuencia y Duración</legend>
-
-                <label>Días de la semana</label>
-                <div class="dias-semana-checkboxes" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-                    <label><input type="checkbox" name="dias" value="Lun"> Lun</label>
-                    <label><input type="checkbox" name="dias" value="Mar"> Mar</label>
-                    <label><input type="checkbox" name="dias" value="Mie"> Mie</label>
-                    <label><input type="checkbox" name="dias" value="Jue"> Jue</label>
-                    <label><input type="checkbox" name="dias" value="Vie"> Vie</label>
-                    <label><input type="checkbox" name="dias" value="Sab"> Sáb</label>
-                    <label><input type="checkbox" name="dias" value="Dom"> Dom</label>
+            <div class="popup-contenido popup-formulario">
+                <div class="popup-formulario-header">
+                    <h3 id="tituloModalMedicamento">Cargar Medicamento</h3>
+                    <button type="button" id="btnCerrarMedicamento" aria-label="Cerrar"><i data-lucide="x"></i></button>
                 </div>
 
-                <label for="inputMedFrecuencia">¿Cuántas veces al día?</label>
-                <input type="number" id="inputMedFrecuencia" min="1" max="24" placeholder="Ej: 2" required>
+                <form id="formMedicamento">
+                    <input type="hidden" id="inputMedId" name="medId">
 
-                <label for="inputMedHorarios">Horarios (separados por coma)</label>
-                <input type="text" id="inputMedHorarios" placeholder="Ej: 08:00, 20:00" required>
+                    <fieldset>
+                        <legend>Información del Medicamento</legend>
 
-                <label for="inputMedDuracion">Duración del tratamiento</label>
-                <input type="text" id="inputMedDuracion" placeholder="Ej: 7 días, 3 meses, Crónico" required>
-            </fieldset>
+                        <label for="inputMedNombre">Nombre del Medicamento</label>
+                        <input type="text" id="inputMedNombre" required placeholder="Ej: Paracetamol">
 
-            <fieldset>
-                <legend>Indicaciones</legend>
-                <label for="txtMedIndicaciones">Notas adicionales</label>
-                <textarea id="txtMedIndicaciones" rows="3" placeholder="Ej: Para la presión. Tomar en ayunas."></textarea>
-            </fieldset>
+                        <label for="selectMedTipo">Tipo de presentación</label>
+                        <select id="selectMedTipo" required>
+                            <option value="pastilla">Pastilla / Comprimido</option>
+                            <option value="inyeccion">Inyección / Ampolla</option>
+                            <option value="jarabe">Jarabe / Líquido</option>
+                            <option value="gotas">Gotas</option>
+                        </select>
+                    </fieldset>
 
-            <button type="submit" class="btn-enviar">Guardar Medicamento</button>
-        </form>
-    </div>
-</div>
+                    <fieldset>
+                        <legend>Frecuencia y Duración</legend>
+
+                        <label>Días de la semana</label>
+                        <div class="med-dias-seleccion">
+                            <input type="checkbox" id="check-lun" name="dias" value="L">
+                            <label for="check-lun">L</label>
+
+                            <input type="checkbox" id="check-mar" name="dias" value="M">
+                            <label for="check-mar">M</label>
+
+                            <input type="checkbox" id="check-mie" name="dias" value="Mi">
+                            <label for="check-mie">Mi</label>
+
+                            <input type="checkbox" id="check-jue" name="dias" value="J">
+                            <label for="check-jue">J</label>
+
+                            <input type="checkbox" id="check-vie" name="dias" value="V">
+                            <label for="check-vie">V</label>
+
+                            <input type="checkbox" id="check-sab" name="dias" value="S">
+                            <label for="check-sab">S</label>
+
+                            <input type="checkbox" id="check-dom" name="dias" value="D">
+                            <label for="check-dom">D</label>
+                        </div>
+
+                        <div class="grupo-frecuencia-horarios">
+                            <div>
+                                <label for="inputMedFrecuencia">¿Cuántas veces al día?</label>
+                                <input type="number" id="inputMedFrecuencia" placeholder="Ej: 2">
+                            </div>
+                            <div>
+                                <label for="inputMedDuracion">Duración del tratamiento</label>
+                                <input type="text" id="inputMedDuracion" placeholder="Ej: 7 días, 3 meses, Crónico">
+                            </div>
+                        </div>
+                        <label for="inputMedHorarios">Horarios (separados por coma)</label>
+                        <input type="text" id="inputMedHorarios" placeholder="Ej: 08:00, 20:00">
+
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Indicaciones</legend>
+                        <label for="txtMedIndicaciones">Notas adicionales</label>
+                        <textarea id="txtMedIndicaciones" rows="3"
+                            placeholder="Ej: Para la presión. Tomar en ayunas."></textarea>
+                    </fieldset>
+
+                    <button type="submit" class="btn-enviar">Guardar Medicamento</button>
+                </form>
+            </div>
+        </div>
 
     </main>
     <div id="footer-component"></div>
@@ -319,7 +339,6 @@
     <script src="/js/usuarios.js"></script>
     <script src="/js/gestionUsuarios.js"></script>
     <script src="/js/cargaInformacionUsuario.js"></script>
-    <script src="/js/toggleSecciones.js"></script>
     <script src="/js/miPerfilPaciente.js"></script>
 
 </body>

@@ -1,19 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // === LÓGICA PARA CONTRAER / EXPANDIR SECCIONES ===
+    document.querySelectorAll(".btn-toggle-seccion").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const seccion = btn.closest(".info-paciente, .enfermeros-asoc, .medicamentos-vacunas, .mis-antecedentes");
+            if (seccion) {
+                seccion.classList.toggle("colapsada");
+            }
+        });
+    });
 
-            const botonesToggle = document.querySelectorAll(".btn-toggle-seccion");
+    // Verificación de seguridad para asegurar que usuariosBase exista
+    if (typeof usuariosBase === 'undefined') {
+        console.error("Error: 'usuariosBase' no está definido.");
+        return;
+    }
 
-            botonesToggle.forEach(boton => {
-                boton.addEventListener("click", () => {
-                    const seccion = boton.closest("section");
-                    seccion.classList.toggle("colapsada");
-                });
-            });
-
-
-            // Simulamos trabajar con el usuario Juan (ID 1)
+    // Simulamos trabajar con el usuario Juan (ID 1)
     let usuarioActual = usuariosBase.find(u => u.id === 1);
     
-    // Asegurar que el usuario tenga un array de medicamentos inicializado
+    if (!usuarioActual) {
+        console.error("No se encontró el usuario con ID 1");
+        return;
+    }
+
     if (!usuarioActual.medicamentos) {
         usuarioActual.medicamentos = [];
     }
@@ -22,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalMed = document.getElementById("popupMedicamento");
     const formMed = document.getElementById("formMedicamento");
     
-    // Mapeo de iconos de Lucide según el tipo
     const iconosTipo = {
         pastilla: "pill",
         inyeccion: "syringe",
@@ -32,16 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- FUNCIÓN RENDERIZAR MEDICAMENTOS ---
     function renderMedicamentos() {
-        contenedor.innerHTML = ""; // Limpiar contenedor
+        contenedor.innerHTML = ""; 
 
         if (usuarioActual.medicamentos.length === 0) {
             contenedor.innerHTML = `
-                <div class="sin-datos-vacigo" style="text-align: center; padding: 20px; color: #777;">
-                    <i data-lucide="archive" style="width: 48px; height: 48px; margin-bottom: 10px; opacity: 0.5;"></i>
+                <div class="sin-datos-vacio">
+                    <i data-lucide="archive"></i>
                     <p>No tienes medicamentos cargados en este momento.</p>
                 </div>
             `;
-            lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
             return;
         }
 
@@ -50,42 +58,40 @@ document.addEventListener("DOMContentLoaded", () => {
         usuarioActual.medicamentos.forEach(med => {
             const icono = iconosTipo[med.tipo] || "pill";
             
-            // Generar burbujas de días de la semana con color activo/inactivo
-            let diasHTML = `<div class="med-dias-lista" style="display:flex; gap:5px; margin: 8px 0;">`;
+            // Generar contenedor de días
+            let diasHTML = `<div class="med-dias-lista">`;
             diasSemanaFijos.forEach(d => {
                 const activo = med.dias.includes(d);
-                const background = activo ? "var(--color-primario, #007bff)" : "#e0e0e0";
-                const color = activo ? "#fff" : "#777";
-                diasHTML += `<span style="background:${background}; color:${color}; padding:2px 6px; border-radius:4px; font-size:12px; font-weight:bold;">${d}</span>`;
+                const claseActivo = activo ? "dia-activo" : "dia-inactivo";
+                diasHTML += `<span class="med-dia-burbuja ${claseActivo}">${d}</span>`;
             });
             diasHTML += `</div>`;
 
-            // Card del medicamento
+            // Card con estructura idéntica a enfermeros
             const card = document.createElement("div");
             card.className = "card-info-divs";
             card.innerHTML = `
-                <div style="display: flex; gap: 15px; align-items: flex-start;">
-                    <div class="icono-med-tipo" style="background: #e3f2fd; padding: 10px; border-radius: 50%;">
+                <div class="med-detalle-bloque">
+                    <div class="icono-med-tipo">
                         <i data-lucide="${icono}"></i>
                     </div>
-                    <div>
-                        <h3 style="margin:0;">${med.nombre} <small style="font-weight:normal; color:#666;">(${med.duracion})</small></h3>
+                    <div class="med-info-texto">
+                        <h3>${med.nombre} <small>(${med.duracion})</small></h3>
                         ${diasHTML}
-                        <p style="margin:4px 0;"><strong>Horarios:</strong> ${med.horarios.join(" - ")} (${med.frecuencia} veces al día)</p>
-                        <p style="margin:4px 0; font-style: italic; color: #555;"><strong>Indicaciones:</strong> ${med.indicaciones || 'Sin indicaciones.'}</p>
+                        <p><strong>Horarios:</strong> ${med.horarios.join(" - ")} (${med.frecuencia} veces al día)</p>
+                        <p class="med-indicaciones"><strong>Indicaciones:</strong> ${med.indicaciones || 'Sin indicaciones.'}</p>
                     </div>
                 </div>
-                <div class="acciones-enfermero" style="display:flex; gap: 8px;">
+                <div class="acciones-enfermero">
                     <button class="btn-alerta-med" data-id="${med.id}" aria-label="Alerta"><i data-lucide="bell"></i></button>
                     <button class="btn-editar-med" data-id="${med.id}" aria-label="Editar"><i data-lucide="pencil"></i></button>
-                    <button class="btn-borrar-med" data-id="${med.id}" aria-label="Borrar" style="color: red;"><i data-lucide="trash-2"></i></button>
+                    <button class="btn-borrar-med" data-id="${med.id}" aria-label="Borrar"><i data-lucide="trash-2"></i></button>
                 </div>
             `;
             contenedor.appendChild(card);
         });
 
-        // Re-renderizar iconos incorporados dinámicamente
-        lucide.createIcons();
+        if (window.lucide) lucide.createIcons();
         asignarEventosAcciones();
     }
 
@@ -115,21 +121,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("inputMedDuracion").value = med.duracion;
                     document.getElementById("txtMedIndicaciones").value = med.indicaciones;
 
-                    // Checkboxes de días
-                    document.querySelectorAll('input[name="dias"]').forEach(cb => {
+                    document.querySelectorAll('#formMedicamento input[name="dias"]').forEach(cb => {
                         cb.checked = med.dias.includes(cb.value);
                     });
 
-                    modalMed.classList.add("active"); // O la clase CSS que uses para mostrar tus popups
+                    modalMed.classList.add("active");
                     modalMed.style.display = "block"; 
                 }
             });
         });
 
-        // Alerta (Ejemplo conceptual)
+        // Alerta
         document.querySelectorAll(".btn-alerta-med").forEach(btn => {
             btn.addEventListener("click", () => {
-                alert("Configuración de recordatorios/alertas activada para este medicamento.");
+                alert("Configuración de recordatorios/alertas activada.");
             });
         });
     }
@@ -148,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalMed.style.display = "none";
     });
 
-    // --- GUARDAR FORMULARIO (SUBMIT) ---
+    // --- GUARDAR FORMULARIO ---
     formMed.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -158,47 +163,39 @@ document.addEventListener("DOMContentLoaded", () => {
         const frecuencia = document.getElementById("inputMedFrecuencia").value;
         const duracion = document.getElementById("inputMedDuracion").value;
         const indicaciones = document.getElementById("txtMedIndicaciones").value;
-        
-        // Convertir horarios de string separado por comas a array limpio
         const horarios = document.getElementById("inputMedHorarios").value.split(",").map(h => h.trim());
 
-        // Obtener días seleccionados
         const dias = [];
-        document.querySelectorAll('input[name="dias"]:checked').forEach(cb => {
+        document.querySelectorAll('#formMedicamento input[name="dias"]:checked').forEach(cb => {
             dias.push(cb.value);
         });
 
         if (medId) {
-            // Modo Edición
             const index = usuarioActual.medicamentos.findIndex(m => m.id === medId);
             if (index !== -1) {
                 usuarioActual.medicamentos[index] = { id: medId, nombre, tipo, dias, frecuencia, horarios, duracion, indicaciones };
             }
         } else {
-            // Modo Creación nuevo
             const nuevoMed = {
-                id: "med-" + Date.now(), // ID único temporal
+                id: "med-" + Date.now(),
                 nombre, tipo, dias, frecuencia, horarios, duracion, indicaciones
             };
             usuarioActual.medicamentos.push(nuevoMed);
         }
 
         modalMed.style.display = "none";
+        modalMed.classList.remove("active");
         renderMedicamentos();
         
-        // Opcional: Mostrar tu ventana de éxito ya existente
-        document.getElementById("popupEdicionExitosa").style.display = "block";
+        const popupExito = document.getElementById("popupEdicionExitosa");
+        if (popupExito) popupExito.style.display = "block";
     });
 
-    // Cierre del popup de éxito existente
-    document.getElementById("btnCerrarPopupExito")?.addEventListener("click", () => {
-        document.getElementById("popupEdicionExitosa").style.display = "none";
-    });
-
-    // Inicializar la vista cargando los medicamentos
-    renderMedicamentos();
-
-
-
-
+    if (document.getElementById("btnCerrarPopupExito")) {
+        document.getElementById("btnCerrarPopupExito").addEventListener("click", () => {
+            document.getElementById("popupEdicionExitosa").style.display = "none";
         });
+    }
+
+    renderMedicamentos();
+});
