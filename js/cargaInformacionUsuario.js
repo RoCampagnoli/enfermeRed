@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const paciente = buscarUsuarioPorId(usuarioLogueado.id) || usuarioLogueado;
 
     renderizarDatosPaciente(paciente);
+    renderizarEnfermerosAsociados(paciente.enfermerosAsociados || []);
 
     // ---------- Modal de edición ----------
     const modalEditar = document.getElementById("popupEditarDatos");
@@ -85,6 +86,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+function renderizarEnfermerosAsociados(enfermeros) {
+    const contenedor = document.getElementById("enfermerosAsociadosContenido");
+    if (!contenedor) return;
+
+    if (!enfermeros || enfermeros.length === 0) {
+        contenedor.innerHTML = `
+            <div class="sin-datos-vacio">
+                <i data-lucide="heart-crack"></i>
+                <p>No tienes enfermeros asociados aún.</p>
+            </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+    }
+
+    contenedor.innerHTML = enfermeros.map(enfermero => `
+        <div class="card-info-divs">
+            <div class="enfermero-header">
+                <img src="${enfermero.avatar || '../imagenes/avatar_camila.png'}" alt="Foto de ${enfermero.nombre}" class="foto-enfermero">
+                <div>
+                    <h3>${enfermero.nombre}</h3>
+                    <p>${enfermero.especialidad || '-'}</p>
+                    <p>${enfermero.matricula || '-'}</p>
+                </div>
+            </div>
+            <div class="acciones-enfermero">
+                <button aria-label="Llamar"><i data-lucide="phone"></i></button>
+                <button aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
+            </div>
+        </div>
+    `).join('');
+
+    if (window.lucide) lucide.createIcons();
+}
 
 function renderizarDatosPaciente(paciente) {
 

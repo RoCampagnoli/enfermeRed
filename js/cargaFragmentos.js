@@ -3,6 +3,33 @@ async function cargarComponentes() {
     const resHeader = await fetch('../vistas/fragmentos/header.html');
     document.getElementById('header-component').innerHTML = await resHeader.text();
 
+    const navToggle = document.getElementById('navToggle');
+    if (navToggle) {
+        navToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const navbar = navToggle.closest('.navbar');
+            if (!navbar) return;
+            const isOpen = navbar.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+
+    document.addEventListener('click', () => {
+        const openNavbar = document.querySelector('.navbar.open');
+        if (openNavbar) {
+            openNavbar.classList.remove('open');
+        }
+    });
+
+    document.querySelectorAll('.lista_links a').forEach((link) => {
+        link.addEventListener('click', () => {
+            const openNavbar = document.querySelector('.navbar.open');
+            if (openNavbar) {
+                openNavbar.classList.remove('open');
+            }
+        });
+    });
+
         // Carga el footer
     const resFooter = await fetch('../vistas/fragmentos/footer.html');
     document.getElementById('footer-component').innerHTML = await resFooter.text();

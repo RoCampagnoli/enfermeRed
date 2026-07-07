@@ -199,3 +199,37 @@
         gap: 0.75rem;
     }
 }
+
+@media (max-width: 520px) {
+    .nurse-card {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        padding: 0.9rem;
+    }
+
+    .nurse-card-left,
+    .nurse-card-center,
+    .nurse-card-right {
+        align-items: stretch;
+    }
+
+    .nurse-card-left {
+        flex-direction: column;
+    }
+
+    .nurse-card-right {
+        flex-direction: column;
+    }
+
+    .nurse-avatar {
+        margin: 0 auto;
+    }
+
+    .nurse-map {
+        min-height: 120px;
+    }
+
+    .nurse-card-right button {
+        width: 100%;
+    }
+}

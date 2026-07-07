@@ -132,11 +132,45 @@
 
 .btn-volver {
     background-color: var(--blanco);
+    color: var(--color-primario);
+    border: 2px solid var(--color-secundario);
     font-size: 1rem;
 }
 
-.btn-volver:hover {
-    background-color: var(--gris-fondo);
+.btn-volver:hover,
+.accion-volver .btn-volver:hover {
+    background-color: var(--color-secundario) !important;
+    border-color: var(--color-secundario) !important;
+    color: white !important;
+}
+
+.accion-volver .btn-volver {
+    border-color: var(--color-secundario) !important;
+    background-color: white !important;
+    color: var(--color-primario) !important;
+}
+
+@media (max-width: 760px) {
+    .opciones-registro {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .tarjeta-rol {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .imagen-rol {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .btn-rol {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* --- PIE DE PÁGINA (FOOTER) --- */

@@ -24,19 +24,38 @@ function verificarSesionPaciente() {
 function manejarClickContratar(event) {
     event.preventDefault();
     const button = event.currentTarget;
+    const popupId = button.dataset.popupTarget;
     const card = button.closest('.nurse-card');
-    
-    if (!verificarSesionPaciente()) {
-        // No hay sesión o no es paciente - mostrar popup de sesión requerida
-        abrirPopup('popupSesionRequerida');
+
+    if (!popupId) return;
+
+    if (popupId === 'popupContratar') {
+        if (!verificarSesionPaciente()) {
+            abrirPopup('popupSesionRequerida');
+            return;
+        }
+
+        cardSeleccionadaParaContratar = card;
+        const dias = obtenerDiasDisponiblesDesdeBoton(button);
+        poblarDiasDisponibles(dias);
+        abrirPopup('popupContratar');
         return;
     }
-    
-    // Es paciente - mostrar popups existentes
-    cardSeleccionadaParaContratar = card;
-    const enfermero = obtenerDatosEnfermeroDesdeCard(card);
-    poblarPopupConfirmar(enfermero);
-    abrirPopup('popupConfirmar');
+
+    if (popupId === 'popupConfirmar') {
+        if (!verificarSesionPaciente()) {
+            abrirPopup('popupSesionRequerida');
+            return;
+        }
+
+        cardSeleccionadaParaContratar = card;
+        const enfermero = obtenerDatosEnfermeroDesdeCard(card);
+        poblarPopupConfirmar(enfermero);
+        abrirPopup('popupConfirmar');
+        return;
+    }
+
+    abrirPopup(popupId);
 }
 
 let cardSeleccionadaParaContratar = null;
@@ -173,6 +192,41 @@ function obtenerDiasDisponiblesDesdeBoton(button) {
         .filter(Boolean);
 }
 
+function obtenerDatosEnfermeroAsociado(card) {
+    if (!card) return null;
+    return {
+        id: `enf-${Date.now()}`,
+        nombre: card.querySelector('h2')?.textContent.trim() || '',
+        especialidad: card.querySelector('.nurse-subtitulo')?.textContent.trim() || '',
+        matricula: card.querySelectorAll('.nurse-meta')[0]?.textContent.trim() || '',
+        precio: card.querySelector('.nurse-precio')?.textContent.trim() || '',
+        avatar: card.querySelector('.nurse-avatar img')?.getAttribute('src') || '',
+        disponibilidad: Array.from(card.querySelectorAll('.nurse-disponibilidad span.activo'))
+            .map((span) => span.textContent.trim())
+            .filter(Boolean),
+    };
+}
+
+function asociarEnfermeroAPaciente(enfermero) {
+    if (!enfermero) return;
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
+    if (!usuarioLogueado || usuarioLogueado.tipo !== 'paciente') return;
+
+    const paciente = buscarUsuarioPorId(usuarioLogueado.id);
+    if (!paciente) return;
+
+    paciente.enfermerosAsociados = paciente.enfermerosAsociados || [];
+    const yaAsociado = paciente.enfermerosAsociados.some((e) =>
+        e.matricula === enfermero.matricula && e.nombre === enfermero.nombre
+    );
+
+    if (!yaAsociado) {
+        paciente.enfermerosAsociados.push(enfermero);
+        actualizarUsuario(paciente.id, { enfermerosAsociados: paciente.enfermerosAsociados });
+        localStorage.setItem('usuarioLogueado', JSON.stringify(paciente));
+    }
+}
+
 function obtenerHorariosSeleccionados() {
     return Array.from(document.querySelectorAll('#popupContratar .popup-horarios input:checked'))
         .map((input) => input.value);
@@ -216,6 +270,11 @@ function procederPago() {
     if (horarios.length === 0) {
         error.textContent = 'Debe seleccionar el horario que desee';
         return;
+    }
+
+    if (cardSeleccionadaParaContratar) {
+        const enfermero = obtenerDatosEnfermeroAsociado(cardSeleccionadaParaContratar);
+        asociarEnfermeroAPaciente(enfermero);
     }
 
     error.textContent = '';

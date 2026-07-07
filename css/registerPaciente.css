@@ -265,12 +265,13 @@
 .btn-cancelar {
     background-color: white;
     color: var(--color-primario);
-    border-color: var(--color-primario);
+    border-color: var(--color-secundario);
 }
 
 .btn-cancelar:hover {
-    background-color: var(--color-primario-50);
-    border-color: var(--color-primario-claro);
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+    color: white;
 }
 
 .btn-enviar:focus-visible,
