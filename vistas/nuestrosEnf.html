@@ -7,9 +7,8 @@
         <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/componentes.css">
     <link rel="stylesheet" href="../css/nuestrosEnf.css">
@@ -20,14 +19,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
  <div id="header-component"></div>
     <main class="main-home">
         <section class="nuestros-hero">
-            <div class="nuestros-hero-texto">
-                <h1>Nuestros Enfermeros</h1>
-                <p>Conoce al equipo profesional y sus zonas de atención.</p>
+            <div class="hero-header">
+                <div class="nuestros-hero-texto">
+                    <h1>Nuestros Enfermeros</h1>
+                    <p>Conoce al equipo profesional y sus zonas de atención.</p>
+                </div>
             </div>
+            <button id="btnAbrirFiltro" class="btn-enfermero">FILTRAR</button>
         </section>
+        
 
         <section class="nuestros-lista">
-            <article class="nurse-card">
+            <article class="nurse-card"
+                    data-precio="60000" 
+                    data-disponibilidad="L M Mi J V" 
+                    data-valoracion="2" 
+                    data-zona="norte">
                 <div class="nurse-card-left">
                     <div class="nurse-avatar"><img src="../imagenes/avatar_soledad.png" alt="Soledad Perez"></div>
                     <div>
@@ -87,7 +94,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 </div>
             </article>
 
-            <article class="nurse-card">
+            <article class="nurse-card"
+                    data-precio="50000" 
+                    data-disponibilidad="J V" 
+                    data-valoracion="2" 
+                    data-zona="sur">
                 <div class="nurse-card-left">
                     <div class="nurse-avatar"><img src="../imagenes/avatar_juan.png" alt="Juan Manuel Lopez"></div>
                     <div>
@@ -142,7 +153,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 </div>
             </article>
 
-            <article class="nurse-card">
+            <article class="nurse-card"
+                    data-precio="60000" 
+                    data-disponibilidad="L M Mi" 
+                    data-valoracion="3" 
+                    data-zona="oeste">
                 <div class="nurse-card-left">
                     <div class="nurse-avatar"><img src="../imagenes/avatar_camila.png" alt="Camila Monserrat"></div>
                     <div>
@@ -306,11 +321,74 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div id="footer-component"></div>
 
+<div id="filterSidebar" class="filter-sidebar">
+    <div class="filter-header">
+        <h3>FILTROS</h3>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button id="btnLimpiarFiltros" class="btn-enfermero btn-limpiar-header" style="width:100%; height: 30%;">Borrar filtros</button>
+            <button id="btnCerrarFiltro" class="btn-close">×</button>
+        </div>
+    </div>
+
+    <div class="filter-content">
+        <div class="filter-group">
+            <label>PRECIO MÁXIMO X HORA</label>
+            <input type="number" id="filtroPrecio" min="0">
+        </div>
+
+        <div class="filter-group">
+            <label>DÍA</label>
+            <select id="filtroDia">
+                <option value="">Cualquier día</option>
+                <option value="L">Lunes (L)</option>
+                <option value="M">Martes (M)</option>
+                <option value="Mi">Miércoles (Mi)</option>
+                <option value="J">Jueves (J)</option>
+                <option value="V">Viernes (V)</option>
+                <option value="S">Sábado (S)</option>
+                <option value="D">Domingo (D)</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>VALORACIÓN MÍNIMA</label>
+            <input type="hidden" id="valoracionSeleccionada" value="0">
+            <div class="rating-stars" id="containerEstrellas">
+                <span data-value="1">★</span>
+                <span data-value="2">★</span>
+                <span data-value="3">★</span>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>ZONA</label>
+            <select id="filtroZona">
+                <option value="">Cualquiera</option>
+                <option value="norte">Zona Norte</option>
+                <option value="sur">Zona Sur</option>
+                <option value="oeste">Zona Oeste</option>
+            </select>
+        </div>
+
+        <div class="filter-group" style="margin-top: 1.5rem;">
+                <label>ORDENAR POR</label>
+                <select id="ordenadorOpciones">
+                    <option value="">Sin ordenar</option>
+                    <option value="destacado">Destacado (Mayor valoración)</option>
+                    <option value="precioDesc">Precio: Mayor a Menor</option>
+                    <option value="precioAsc">Precio: Menor a Mayor</option>
+                </select>
+            </div>
+
+            <button id="btnAplicarFiltros" class="btn-enfermero btn-aplicar" style="width:100%; margin-top:1.5rem;">FILTRAR</button>
+        </div>
+</div>
+
 <script src="../js/cargaFragmentos.js"></script>
 <script src="../js/usuarios.js"></script>
 <script src="../js/popup.js"></script>
 <script src="../js/gestionUsuarios.js"></script>
-
+<script src="../js/filtroEnf.js"></script>
 </body>
 
 </html>

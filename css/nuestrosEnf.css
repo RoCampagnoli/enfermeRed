@@ -4,6 +4,7 @@
 }
 
 .nuestros-hero {
+    display: block;
     padding: 1rem 0 0;
 }
 
@@ -175,6 +176,165 @@
     width: 100%;
 }
 
+/* Para alinear el título y el botón */
+.hero-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* El sidebar escondido a la derecha */
+.filter-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Lo escondemos totalmente */
+    width: 100%;
+    max-width: 350px; /* Límite máximo para PC */
+    height: 100vh;
+    background: white;
+    z-index: 99999; /* Asegura que esté por encima de todo */
+    box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+    transition: right 0.3s ease-in-out; 
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.filter-sidebar.active {
+    right: 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 1rem;
+}
+
+.filter-header h3 {
+    margin: 0;
+    color: var(--color-primario);
+    font-family: var(--font-principal);
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-texto);
+}
+
+.filter-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.filter-group label {
+    font-family: var(--font-principal);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.85rem;
+    color: var(--color-primario);
+    letter-spacing: 0.5px;
+}
+
+.filter-content input[type="number"],
+.filter-content select {
+    padding: 0.75rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.5rem;
+    font-family: var(--font-secundaria);
+    font-size: 0.95rem;
+    background-color: #fff;
+    color: var(--color-texto);
+}
+
+/* --- Estrellas interactiva --- */
+.rating-stars {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.rating-stars span {
+    color: #ccc;
+    transition: color 0.2s ease;
+}
+
+.btn-limpiar {
+    width: 100%;
+    margin-top: 0.5rem;
+    background: transparent;
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+    font-weight: var(--font-weight-semibold);
+    padding: 0.75rem;
+}
+
+.btn-limpiar:hover {
+    background: var(--color-primario-50);
+}
+
+/*.btn-aplicar {
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    font-weight: var(--font-weight-bold);
+    padding: 0.85rem;
+}*/
+
+/* Un fondo oscuro detrás cuando está abierto */
+.filter-overlay-dimmer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: none;
+}
+.filter-overlay-dimmer.active { display: block; }
+
+/*.btn-limpiar-header {
+    background: transparent;
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.btn-limpiar-header:hover {
+    background: var(--color-primario-50); 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+}*/
+
+.btn-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (max-width: 960px) {
     .nurse-card {
         grid-template-columns: 1fr;
@@ -197,6 +357,24 @@
 
     .nurse-card-right {
         gap: 0.75rem;
+    }
+
+    .hero-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    }
+
+    #btnAbrirFiltro {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        margin-top: 0
+    }
+
+    .filter-sidebar {
+        max-width: 100%; 
+        border-radius: 0; 
     }
 }
 
