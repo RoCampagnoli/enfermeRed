@@ -45,20 +45,26 @@ async function cargarComponentes() {
 }
 
 function inicializarSesion() {
-    const btnSesion = document.getElementById('btnSesion');
+    const btnSesion = document.getElementById('btnSesion'); // Botón clásico
+    const contenedorPerfil = document.getElementById('contenedorPerfil'); // Contenedor del ícono + menú
+    const btnIconoPerfil = document.getElementById('btnIconoPerfil'); // El ícono en sí
     const dropdownMenu = document.getElementById('dropdownMenu');
     const btnLogout = document.getElementById('btnLogout');
     const linkMiPerfil = document.getElementById('linkMiPerfil');
     const usuarioGuardado = localStorage.getItem('usuarioLogueado');
 
-    if (!btnSesion) return;
+    if (!btnSesion || !contenedorPerfil) return;
 
     if (usuarioGuardado) {
         const usuario = JSON.parse(usuarioGuardado);
 
-        btnSesion.textContent = 'Mi perfil';
+        // ESTADO: LOGUEADO -> Ocultamos botón, mostramos ícono avatar
+        btnSesion.style.display = 'none';
+        contenedorPerfil.style.display = 'inline-block';
 
-        btnSesion.onclick = (e) => {
+        // Comportamiento del ícono para desplegar menú
+        btnIconoPerfil.onclick = (e) => {
+            e.preventDefault();
             e.stopPropagation();
             dropdownMenu.classList.toggle('mostrar');
         };
@@ -79,12 +85,16 @@ function inicializarSesion() {
         };
 
     } else {
-        btnSesion.textContent = 'Iniciar sesión';
+        // ESTADO: SIN LOGUEAR -> Mostramos botón llamativo, ocultamos ícono avatar
+        btnSesion.style.display = 'inline-flex';
+        contenedorPerfil.style.display = 'none';
+
         btnSesion.onclick = () => {
             window.location.href = 'iniciarSesion.html';
         };
     }
 
+    // Cerrar el menú desplegable del avatar si se hace click afuera
     document.addEventListener('click', () => {
         if (dropdownMenu) dropdownMenu.classList.remove('mostrar');
     });

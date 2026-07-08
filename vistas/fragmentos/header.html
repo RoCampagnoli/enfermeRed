@@ -1,9 +1,13 @@
 <header>
+    <nav class="navbar-sup">
+        <img class="logo_img" src="../imagenes/imgLogo.png" alt="enfermeRed">
+        <img class="logo_texto" src="../imagenes/textoLogo.png" alt="enfermeRed">
+
+    </nav>
     <nav class="navbar">
+
+
         <div class="navbar-brand">
-            <a href="../vistas/home.html" class="logo_a">
-                <img class="logo_img" src="../imagenes/logo2.png" alt="enfermeRed">
-            </a>
 
             <button class="navbar-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuDropdown">
                 <span class="burger"></span>
@@ -19,6 +23,11 @@
                     <li><a href="../vistas/home.html#contacto">Contactanos</a></li>
                 </ul>
             </div>
+
+            <a href="../vistas/home.html" class="iconosEnlaces"><i data-lucide="home"></i>
+            </a>
+
+            
         </div>
 
         <div class="navbar-links-desktop">
@@ -30,12 +39,19 @@
             </ul>
         </div>
 
+<!-- Contenedor de sesión dinámico -->
         <div class="botones-sesion">
-            <div class="dropdown-sesion">
-                <button class="btn-login" id="btnSesion">Iniciar sesi&oacute;n</button>
+            <!-- 1. Botón llamativo clásico (Visible si NO hay sesión) -->
+            <button class="btn-login" id="btnSesion">Iniciar sesi&oacute;n</button>
+
+            <!-- 2. Ícono de usuario (Visible SÓLO si SÍ hay sesión) -->
+            <div class="dropdown-sesion" id="contenedorPerfil" style="display: none;">
+                <a href="#" class="iconosEnlaces" id="btnIconoPerfil" aria-label="Perfil de usuario">
+                    <i data-lucide="user"></i>
+                </a>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li><a href="#" id="linkMiPerfil"><i data-lucide="user"></i> Mi perfil</a></li>
-                    <li><a href="#" id="btnLogout">Cerrar sesi&oacute;n</a></li>
+                    <li><a href="#" id="linkMiPerfil"><i data-lucide="id-card"></i> Mis datos</a></li>
+                    <li><a href="#" id="btnLogout"><i data-lucide="log-out"></i> Cerrar sesi&oacute;n</a></li>
                 </ul>
             </div>
         </div>

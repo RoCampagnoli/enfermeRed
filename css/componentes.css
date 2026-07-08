@@ -1,73 +1,96 @@
 @import url(/css/variables.css);
 
-*{
+* {
     box-sizing: border-box;
 }
+
+/* =========================================================
+   ESTRUCTURA BASE CON HEADERS Y FOOTERS FIJOS
+   ========================================================= */
 html,
-body{
-    height:100%;
+body {
+    height: 100%;
+    margin: 0;
 }
 
-body{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    margin:0;
-    font-family:var(--font-principal);
-    color:var(--color-texto);
-    overflow:auto;
+body {
+    height: 100vh;           /* Fuerza al cuerpo a medir exactamente la pantalla */
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-principal);
+    color: var(--color-texto);
+    overflow: hidden;        /* ¡Clave! Evita que la pantalla completa haga scroll */
 }
 
 header,
-footer{
-    flex-shrink:0;
+footer {
+    flex-shrink: 0;          /* Impide que el header o footer se achiquen o colapsen */
+    width: 100%;
 }
 
-main{
-    flex:1;
-    background:var(--color-fondo);
-    padding:1rem;
+main {
+    flex: 1;                 /* Toma de manera dinámica todo el espacio restante entre el header y el footer */
+    background: var(--color-fondo);
+    padding: 1rem;
+    overflow-y: auto;        /* ¡Clave! El scroll vertical ahora ocurre ÚNICAMENTE dentro del main */
 }
 
-
- h1{
+h1 {
     font-size: 2rem;
     color: var(--color-primario);
     margin-bottom: 0.5rem;
 }
 
- h1,  p {
+h1, p {
     margin: 0;
 }
 
+/* =========================================================
+   HEADER / NAVBAR
+   ========================================================= */
+.navbar-sup {
+    background-color: var(--color-fondo);  
+    display: flex;   
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 0.2rem 0 0.2rem 0.5rem;
+    gap: 1rem;
+}
+
+.logo_img {
+    height: 3rem;
+}
+
+.logo_texto {
+    height: 1.5rem;
+}
+
 .navbar {
-    background-color: var(--color-secundario-claro);
+    background-color: var(--color-secundario);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding:0.5rem 1rem;
+    padding: 0.5rem 1rem;
 }
 
-.logo_img{
-    height: 80px;
-    width: auto;
-}
-
-.logo_a {
+.iconosEnlaces {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.lista_links{
+.lista_links {
     padding: 0;
     list-style: none;
     display: flex;
     gap: 2rem;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.lista_links li a{
+.lista_links li a {
     text-decoration: none;
     color: var(--color-texto);
     font-weight: bold;
@@ -75,56 +98,136 @@ main{
 }
 
 /* =========================================================
-FOOTER
+   FOOTER REESTRUCTURADO Y CENTRADO (Mantiene proporción y límites)
    ========================================================= */
-footer{
-    background:var(--color-secundario-claro);
-    text-align:center;
-    margin-top: auto;
+footer {
+    background: var(--color-secundario);
+    padding: 0.5rem 1rem; /* Añadido padding lateral para que no toque los bordes */
+    width: 100%;
 }
 
-footer .navbar {
+.navbar-footer {
+    display: flex;
+    max-width: 900px; /* Reducido de 1200px a 900px para que no sea tan ancho */
+    margin: 0 auto;
+    gap: 2rem; /* Reducido el gap excesivo para mantenerlo compacto */
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
+    width: 100%;
+}
+
+/* --- BLOQUE IZQUIERDO (Mantener alineado a lo largo) --- */
+.footer-izquierda {
+    flex: 0 0 30%; /* Reemplaza width por flex-basis */
+    display: flex;
+    flex-direction: column;
+    align-items: center;      
+    justify-content: center;   
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-logo .logo_img_footer {
+    height: 3.5rem;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto; 
+}
+
+.footer-redes {
+    display: flex;
+    justify-content: center; 
     gap: 1rem;
-    padding: 1.5rem 1rem;
+    width: 100%;
+}
+
+.footer-redes a {
+    color: var(--color-primario);
+    font-size: 1.4rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* --- BLOQUE DERECHO (70% - Se encoge dinámicamente) --- */
+.footer-derecha {
+    flex: 0 0 70%; /* Reemplaza width por flex-basis */
+    display: flex;
+    flex-direction: column;
+    align-items: center;     
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem; /* Reducido un poco */
+}
+
+.footer-eslogan {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eslogan-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+    margin: 0;
+    font-family: var(--font-principal);
+    color: var(--color-primario); 
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.eslogan-principal::before,
+.eslogan-principal::after {
+    content: "";
+    flex: 1;
+    max-width: 60px; /* Reducido el tamaño de las líneas */
+    height: 2px;
+    background-color: var(--color-primario);
+}
+
+.eslogan-secundario {
+    margin: 0;
+    font-family: var(--font-secundaria);
+    color: var(--color-texto);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+.footer-contacto-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
-.footer-logo,
-.footer-links,
-.footer-contacto {
-    width: calc(33.333% - 1rem);
-    min-width: 180px;
+.footer-contacto-info p {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
-.footer-contacto, .footer-links{
-    display:flex;
-    flex-direction:column;
-}
-
-.footer-contacto p,.footer-links p{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:.8rem;
-    margin:0.5rem;
-}
-
-.footer-contacto svg{
-    width:20px;
-    height:20px;
-    flex-shrink:0;
-}
-
-h3{
-    margin-bottom:1rem;
+h3 {
+    margin-bottom: 1rem;
 }
 
 /* =========================================================
-BOTONES
+   BOTONES
    ========================================================= */
-
 button, 
 .btn-login, 
 .btn-busqueda, 
@@ -206,14 +309,13 @@ button:hover {
 }
 
 /* =========================================================
-MENU HAMBURGUESA
+   MENU HAMBURGUESA
    ========================================================= */
-
 .navbar-brand {
     display: flex;
     align-items: center;
     gap: 1rem;
-    position: relative; /* ancla para el dropdown */
+    position: relative; 
 }
 
 .navbar-toggle {
@@ -221,11 +323,13 @@ MENU HAMBURGUESA
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     background: transparent;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
+    width: 40px; 
+    height: 40px;
 }
 
 .navbar-toggle:hover {
@@ -240,10 +344,15 @@ MENU HAMBURGUESA
 
 .burger {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 3px;
     margin: 0;
     border-radius: 2px;
+    background-color: var(--color-primario); 
+    transition: background-color 0.3s ease;
+}
+
+.navbar-toggle:hover .burger {
     background-color: var(--color-texto);
 }
 
@@ -274,6 +383,44 @@ MENU HAMBURGUESA
     gap: 1rem;
 }
 
+/* =========================================================
+   ESTILIZADO DE ÍCONOS SVG (LUCIDE)
+   ========================================================= */
+.iconosEnlaces, 
+.iconosEnlaces i, 
+.iconosEnlaces svg {
+    color: var(--color-primario);
+    stroke: var(--color-primario); 
+    fill: none; 
+}
+
+.iconosEnlaces:hover,
+.iconosEnlaces:hover svg {
+    color: var(--color-texto);
+    stroke: var(--color-texto);
+}
+
+.dropdown-menu li a {
+    color: var(--color-texto); 
+}
+
+.dropdown-menu li a i, 
+.dropdown-menu li a svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-primario);
+    stroke: var(--color-primario);
+}
+
+.dropdown-menu li a:hover i,
+.dropdown-menu li a:hover svg {
+    color: var(--color-primario);
+    stroke: var(--color-primario);
+}
+
+/* =========================================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================================= */
 @media (max-width: 980px) {
     .navbar-toggle {
         display: inline-flex;
@@ -283,15 +430,15 @@ MENU HAMBURGUESA
         display: none;
     }
 
-    footer .navbar {
-        justify-content: center;
-        text-align: center;
+    /* Mantenemos el footer horizontal reduciendo fuentes */
+    .navbar-footer {
+        gap: 1rem;
     }
-
-    .footer-logo,
-    .footer-links,
-    .footer-contacto {
-        width: 100%;
+    .eslogan-principal {
+        font-size: 0.95rem;
+    }
+    .eslogan-secundario, .footer-contacto-info p {
+        font-size: 0.85rem;
     }
 }
 
@@ -303,20 +450,46 @@ MENU HAMBURGUESA
     .logo_img {
         height: 60px;
     }
-
-    footer .navbar {
-        flex-direction: column;
+    /* Rediseño del Footer para Mobile */
+    .navbar-footer {
+        flex-direction: row; /* Mantenemos logo a la izquierda y texto a la derecha */
+        justify-content: center;
+        gap: 1.5rem;
         align-items: center;
     }
 
-    .footer-logo,
-    .footer-links,
-    .footer-contacto {
-        width: 100%;
+    .footer-izquierda {
+        flex: 0 0 auto; /* El logo toma solo su espacio */
+    }
+.footer-derecha {
+        flex: 1; /* El texto toma el resto */
+        align-items: flex-start; /* Alineado a la izquierda junto al logo */
+        text-align: left;
+        gap: 0.4rem;
     }
 
-    .footer-contacto p,
-    .footer-links p {
-        justify-content: center;
+    /* Ocultamos líneas decorativas y el texto secundario que satura la pantalla */
+    .eslogan-principal::before,
+    .eslogan-principal::after,
+    .eslogan-secundario {
+        display: none !important; 
+    }
+
+    .eslogan-principal {
+        font-size: 0.9rem;
+        justify-content: flex-start;
+    }
+
+    /* Reorganizamos redes, número y mail debajo del eslogan en bloques */
+    .footer-contacto-info {
+        flex-direction: column; /* Apilados verticalmente debajo del texto */
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    /* Agrupamos redes y datos de contacto en la misma columna */
+    .footer-redes {
+        justify-content: flex-start;
+        margin-top: 0.2rem;
     }
 }
