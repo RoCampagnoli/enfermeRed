@@ -1,0 +1,228 @@
+@import url(/css/variables.css);
+
+
+/* ===== Intro ===== */
+.intro-quienes {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+}
+
+.intro-quienes h1 {
+    font-family: var(--font-principal);
+    color: var(--color-primario);
+    font-size: var(--font-size-2xl);
+    margin-bottom: 0.75rem;
+}
+
+.intro-texto {
+    font-family: var(--font-secundaria);
+    color: var(--color-texto);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    opacity: 0.85;
+}
+/* ===== Grid de cards ===== */
+.contenedores-info {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    grid-template-rows: auto auto;
+    align-items: stretch;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.info {
+    background: var(--color-secundario);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.info:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 8px 20px rgba(0,0,0,0.15));
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.info-header i {
+    width: 28px;
+    height: 28px;
+    color: var(--color-primario);
+    flex-shrink: 0;
+}
+
+.info h2 {
+    font-family: var(--font-principal);
+    color: var(--color-primario);
+    font-size: var(--font-size-lg);
+    margin: 0;
+}
+
+.card-info {
+    background: var(--color-secundario-50);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    flex: 1;
+}
+
+.card-info p {
+    font-family: var(--font-secundaria);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.card-info ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-info ul li {
+    font-family: var(--font-secundaria);
+    line-height: 1.5;
+}
+
+.como-funciona {
+    padding: 2rem 1rem;
+    max-width: 1100px;
+    margin: 2rem auto 0;
+}
+
+.titulo-seccion {
+    font-family: var(--font-principal);
+    color: var(--color-primario);
+    font-size: var(--font-size-xl, 1.75rem);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pasos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.pasos-columna {
+    background: var(--color-secundario);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.pasos-columna h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-principal);
+    color: var(--color-primario);
+    font-size: var(--font-size-lg);
+    margin: 0 0 1.25rem 0;
+}
+
+.pasos-columna h3 i {
+    width: 24px;
+    height: 24px;
+}
+
+.pasos-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pasos-lista li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-family: var(--font-secundaria);
+    line-height: 1.5;
+}
+
+.paso-numero {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-primario);
+    color: white;
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9rem;
+}
+.etiqueta-mv {
+    font-family: var(--font-principal);
+    color: var(--color-primario);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.5rem !important;
+    border-bottom: 2px solid var(--color-primario);
+    display: inline-block;
+}
+
+.etiqueta-mv:not(:first-child) {
+    margin-top: 1.25rem;
+}
+
+/* Lista de valores sin viñetas, con ícono */
+.lista-valores {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.lista-valores li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-family: var(--font-secundaria);
+    line-height: 1.5;
+}
+
+.lista-valores li i {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 0.15rem; /* alinea el ícono con la primera línea de texto */
+    color: var(--color-primario);
+}
+
+@media (max-width: 800px) {
+    .contenedores-info {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .intro-quienes h1 {
+        font-size: var(--font-size-xl, 1.75rem);
+    }
+
+     .pasos-grid {
+        grid-template-columns: 1fr;
+    }
+}
