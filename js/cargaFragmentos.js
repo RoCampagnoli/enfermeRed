@@ -4,30 +4,35 @@ async function cargarComponentes() {
     document.getElementById('header-component').innerHTML = await resHeader.text();
 
     const navToggle = document.getElementById('navToggle');
-    if (navToggle) {
-        navToggle.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const navbar = navToggle.closest('.navbar');
-            if (!navbar) return;
-            const isOpen = navbar.classList.toggle('open');
-            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
+    const menuDropdown = document.getElementById('menuDropdown');
+
+    function toggleMenu() {
+        if (!menuDropdown) return;
+        const abierto = menuDropdown.classList.toggle('mostrar');
+        navToggle?.setAttribute('aria-expanded', abierto ? 'true' : 'false');
     }
 
-    document.addEventListener('click', () => {
-        const openNavbar = document.querySelector('.navbar.open');
-        if (openNavbar) {
-            openNavbar.classList.remove('open');
+    function cerrarMenu() {
+        if (!menuDropdown) return;
+        menuDropdown.classList.remove('mostrar');
+        navToggle?.setAttribute('aria-expanded', 'false');
+    }
+
+    navToggle?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleMenu();
+    });
+
+    // cerrar si se clickea afuera del menú
+    document.addEventListener('click', (event) => {
+        if (menuDropdown && !menuDropdown.contains(event.target) && event.target !== navToggle) {
+            cerrarMenu();
         }
     });
 
-    document.querySelectorAll('.lista_links a').forEach((link) => {
-        link.addEventListener('click', () => {
-            const openNavbar = document.querySelector('.navbar.open');
-            if (openNavbar) {
-                openNavbar.classList.remove('open');
-            }
-        });
+    // cerrar al clickear un link del menú
+    menuDropdown?.querySelectorAll('.lista_links a').forEach((link) => {
+        link.addEventListener('click', cerrarMenu);
     });
 
         // Carga el footer

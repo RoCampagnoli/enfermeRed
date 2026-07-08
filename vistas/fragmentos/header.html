@@ -1,35 +1,43 @@
 <header>
-        <nav class="navbar">
-            
+    <nav class="navbar">
+        <div class="navbar-brand">
             <a href="../vistas/home.html" class="logo_a">
                 <img class="logo_img" src="../imagenes/logo2.png" alt="enfermeRed">
             </a>
 
-            <button class="navbar-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+            <button class="navbar-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuDropdown">
                 <span class="burger"></span>
                 <span class="burger"></span>
                 <span class="burger"></span>
             </button>
 
-            <div class="navbar-group">
+            <div class="menu-dropdown" id="menuDropdown">
                 <ul class="lista_links">
                     <li><a href="../vistas/quienesSomos.html">¿Quienes somos?</a></li>
                     <li><a href="../vistas/nuestrosEnf.html">Nuestros enfermeros</a></li>
                     <li><a href="../vistas/queOfrecemos.html">¿Qué ofrecemos?</a></li>
                     <li><a href="../vistas/home.html#contacto">Contactanos</a></li>
                 </ul>
-
-                <div class="botones-sesion">
-                    <div class="dropdown-sesion">
-                        <button class="btn-login" id="btnSesion">Iniciar sesi&oacute;n</button>
-                        <ul class="dropdown-menu" id="dropdownMenu">
-                            <li><a href="#" id="linkMiPerfil"><i data-lucide="user"></i> Mi perfil</a></li>
-                            <li><a href="#" id="btnLogout">Cerrar sesi&oacute;n</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-        </nav>
+        </div>
 
-    </header>
+        <div class="navbar-links-desktop">
+            <ul class="lista_links">
+                <li><a href="../vistas/quienesSomos.html">¿Quienes somos?</a></li>
+                <li><a href="../vistas/nuestrosEnf.html">Nuestros enfermeros</a></li>
+                <li><a href="../vistas/queOfrecemos.html">¿Qué ofrecemos?</a></li>
+                <li><a href="../vistas/home.html#contacto">Contactanos</a></li>
+            </ul>
+        </div>
 
+        <div class="botones-sesion">
+            <div class="dropdown-sesion">
+                <button class="btn-login" id="btnSesion">Iniciar sesi&oacute;n</button>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li><a href="#" id="linkMiPerfil"><i data-lucide="user"></i> Mi perfil</a></li>
+                    <li><a href="#" id="btnLogout">Cerrar sesi&oacute;n</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

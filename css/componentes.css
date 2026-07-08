@@ -10,21 +10,14 @@ body{
 
 body{
     min-height:100vh;
-
     display:flex;
     flex-direction:column;
-
     margin:0;
-
     font-family:var(--font-principal);
     color:var(--color-texto);
-
     overflow:auto;
 }
 
-/* =========================================================
-HEADERRRR
-   ========================================================= */
 header,
 footer{
     flex-shrink:0;
@@ -41,12 +34,19 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     padding:0.5rem 1rem;
 }
 
 .logo_img{
     height: 80px;
     width: auto;
+}
+
+.logo_a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .lista_links{
@@ -69,50 +69,22 @@ FOOTER
 footer{
     background:var(--color-secundario-claro);
     text-align:center;
+    margin-top: auto;
 }
 
-/* =========================================================
-BOTONES
-   ========================================================= */
-
-button, 
-.btn-login, 
-.btn-busqueda, 
-.btn-enfermero {
-    /* Tipografía y Tamaño Unificados */
-    font-family: var(--font-principal);      /* Poppins, Montserrat... */
-    font-size: var(--font-size-base);        /* Tamaño base de 16px (1rem) */
-    font-weight: var(--font-weight-semibold); /* Un peso intermedio para que se lea claro */
-    
-    /* Estructura y Espaciado */
-    padding: 0.75rem 1rem;                  /* Espacio interno (arriba/abajo - izquierda/derecha) */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;                             /* Espacio por si en el futuro agregas un icono */
-    
-    /* Borde Redondeado y Estética Base */
-    border-radius: var(--radius-md);         /* Usa tus 12px redondeados del isotipo */
-    border: 2px solid var(--color-secundario);           /* Borde transparente por defecto para evitar saltos visuales */
-    cursor: pointer;                         /* Cambia el cursor a la mano al pasar por encima */
-    
-    /* Animación Suave para los Cambios de Color (Hover) */
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+footer .navbar {
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    flex-wrap: wrap;
 }
 
-/* Evitar que al hacer clic se vea un borde feo de navegador, manteniendo la accesibilidad */
-button:focus-visible {
-    outline: 2px solid var(--color-secundario);
-    outline-offset: 2px;
-}
-
-.btn-login:hover,
-.btn-busqueda:hover,
-.btn-enfermero:hover,
-button:hover {
-    background-color: var(--color-secundario);
-    color: white;
-    border-color: var(--color-secundario);
+.footer-logo,
+.footer-links,
+.footer-contacto {
+    width: calc(33.333% - 1rem);
+    min-width: 180px;
 }
 
 .footer-contacto, .footer-links{
@@ -131,12 +103,47 @@ button:hover {
 .footer-contacto svg{
     width:20px;
     height:20px;
-
     flex-shrink:0;
 }
 
 h3{
     margin-bottom:1rem;
+}
+
+/* =========================================================
+BOTONES
+   ========================================================= */
+
+button, 
+.btn-login, 
+.btn-busqueda, 
+.btn-enfermero {
+    font-family: var(--font-principal);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    padding: 0.75rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-secundario);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+.btn-login:hover,
+.btn-busqueda:hover,
+.btn-enfermero:hover,
+button:hover {
+    background-color: var(--color-secundario);
+    color: white;
+    border-color: var(--color-secundario);
 }
 
 .dropdown-sesion {
@@ -181,23 +188,38 @@ h3{
     height: 16px;
 }
 
-/* Responsive header and footer */
-.navbar {
-    gap: 1rem;
+.botones-sesion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.logo_a {
-    display: inline-flex;
+/* =========================================================
+MENU HAMBURGUESA
+   ========================================================= */
+
+.navbar-brand {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    position: relative; /* ancla para el dropdown */
 }
 
 .navbar-toggle {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     background: transparent;
     border: none;
-    cursor: pointer;
     padding: 0.5rem;
+    cursor: pointer;
+}
+
+.navbar-toggle:hover {
+    background: transparent;
+    border-color: transparent;
 }
 
 .navbar-toggle:focus-visible {
@@ -209,84 +231,45 @@ h3{
     display: block;
     width: 24px;
     height: 3px;
-    margin: 4px 0;
+    margin: 0;
     border-radius: 2px;
     background-color: var(--color-texto);
 }
 
-.navbar-group {
+.navbar-links-desktop {
     display: flex;
-    align-items: center;
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    min-width: 220px;
+    z-index: 100;
+}
+
+.menu-dropdown.mostrar {
+    display: block;
+}
+
+.menu-dropdown .lista_links {
+    flex-direction: column;
     gap: 1rem;
-}
-
-.botones-sesion {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-footer {
-    background:var(--color-secundario-claro);
-    text-align:center;
-    margin-top: auto;
-}
-
-footer .navbar {
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem 1rem;
-    flex-wrap: wrap;
-}
-
-.footer-logo,
-.footer-links,
-.footer-contacto {
-    width: calc(33.333% - 1rem);
-    min-width: 180px;
 }
 
 @media (max-width: 980px) {
-    .navbar {
-        justify-content: space-between;
-        text-align: center;
-    }
-
     .navbar-toggle {
         display: inline-flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    .navbar-group {
+    .navbar-links-desktop {
         display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar.open .navbar-group {
-        display: flex;
-    }
-
-    .lista_links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin: 1rem 0 0;
-    }
-
-    .lista_links li {
-        width: auto;
-    }
-
-    .botones-sesion {
-        width: 100%;
-        justify-content: center;
-        margin-top: 1rem;
     }
 
     footer .navbar {
@@ -303,19 +286,11 @@ footer .navbar {
 
 @media (max-width: 640px) {
     .navbar {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
+        flex-wrap: wrap;
     }
 
     .logo_img {
         height: 60px;
-    }
-
-    .lista_links {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
     }
 
     footer .navbar {
