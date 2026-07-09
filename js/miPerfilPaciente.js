@@ -153,6 +153,69 @@ document.addEventListener("DOMContentLoaded", () => {
         modalMed.style.display = "none";
     });
 
+document.getElementById("btnCerrarMedicamento").addEventListener("click", () => {
+    modalMed.classList.remove("active");
+    modalMed.style.display = "none";
+});
+
+// ---------- Carga de nuevo antecedente vía PDF ----------
+const btnNuevoAntecedente = document.getElementById("btnNuevoAntecedente");
+const inputArchivoAntecedente = document.getElementById("inputArchivoAntecedente");
+
+btnNuevoAntecedente.addEventListener("click", () => {
+    inputArchivoAntecedente.click();
+});
+
+inputArchivoAntecedente.addEventListener("change", async (event) => {
+    const archivo = event.target.files[0];
+    if (!archivo) return;
+
+    if (archivo.type !== "application/pdf" && !archivo.name.toLowerCase().endsWith(".pdf")) {
+        alert("Solo se permiten archivos PDF.");
+        event.target.value = "";
+        return;
+    }
+
+    if (archivo.size > 5 * 1024 * 1024) {
+        alert("El archivo es demasiado grande (máximo 5MB).");
+        event.target.value = "";
+        return;
+    }
+
+    // Este archivo no comparte el "usuarioLogueado" de cargaInformacionUsuario.js
+    // (es una variable local a ese otro DOMContentLoaded), así que lo leemos de nuevo.
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
+    if (!usuarioLogueado) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const textoOriginal = btnNuevoAntecedente.textContent;
+    btnNuevoAntecedente.disabled = true;
+    btnNuevoAntecedente.textContent = "Procesando...";
+
+    try {
+        const nuevoAntecedente = await procesarPdfAntecedente(archivo);
+
+        const usuarioActualAntecedentes = buscarUsuarioPorId(usuarioLogueado.id);
+        const antecedentesActualizados = [...(usuarioActualAntecedentes.antecedentes || []), nuevoAntecedente];
+
+        const resultado = actualizarUsuario(usuarioLogueado.id, { antecedentes: antecedentesActualizados });
+
+        if (resultado.exito) {
+            localStorage.setItem("usuarioLogueado", JSON.stringify(resultado.usuario));
+            renderizarAntecedentes(resultado.usuario.antecedentes);
+        }
+    } catch (error) {
+        console.error("No se pudo leer el PDF:", error);
+        alert("No se pudo leer el archivo PDF. Intentá nuevamente.");
+    } finally {
+        btnNuevoAntecedente.disabled = false;
+        btnNuevoAntecedente.textContent = textoOriginal;
+        event.target.value = "";
+    }
+});
+    
     // --- GUARDAR FORMULARIO ---
     formMed.addEventListener("submit", (e) => {
         e.preventDefault();
