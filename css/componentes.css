@@ -59,11 +59,11 @@ h1, p {
 }
 
 .logo_img {
-    height: 3rem;
+    height: 2.8rem;
 }
 
 .logo_texto {
-    height: 1.5rem;
+    height: 1.3rem;
 }
 
 .navbar {
@@ -72,7 +72,7 @@ h1, p {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0rem 0.5rem;
 }
 
 .iconosEnlaces {
@@ -102,7 +102,7 @@ h1, p {
    ========================================================= */
 footer {
     background: var(--color-secundario);
-    padding: 0.5rem 1rem; /* Añadido padding lateral para que no toque los bordes */
+    padding: 0.3rem 1rem; /* Añadido padding lateral para que no toque los bordes */
     width: 100%;
 }
 
@@ -110,7 +110,7 @@ footer {
     display: flex;
     max-width: 900px; /* Reducido de 1200px a 900px para que no sea tan ancho */
     margin: 0 auto;
-    gap: 2rem; /* Reducido el gap excesivo para mantenerlo compacto */
+    gap: 1.5rem; /* Reducido el gap excesivo para mantenerlo compacto */
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -124,7 +124,7 @@ footer {
     align-items: center;      
     justify-content: center;   
     text-align: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 .footer-logo {
@@ -135,7 +135,7 @@ footer {
 }
 
 .footer-logo .logo_img_footer {
-    height: 3.5rem;
+    height: 3rem;
     object-fit: contain;
     display: block;
     margin: 0 auto; 
@@ -150,9 +150,10 @@ footer {
 
 .footer-redes a {
     color: var(--color-primario);
-    font-size: 1.4rem;
+    font-size: 1rem;
     transition: transform 0.2s ease, color 0.2s ease;
 }
+
 
 /* --- BLOQUE DERECHO (70% - Se encoge dinámicamente) --- */
 .footer-derecha {
@@ -162,7 +163,7 @@ footer {
     align-items: center;     
     justify-content: center;
     text-align: center;
-    gap: 0.5rem; /* Reducido un poco */
+    gap: 0.3rem; /* Reducido un poco */
 }
 
 .footer-eslogan {
@@ -177,11 +178,11 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 1rem;
+    gap: 0.5rem;
     margin: 0;
     font-family: var(--font-principal);
     color: var(--color-primario); 
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -199,7 +200,7 @@ footer {
     margin: 0;
     font-family: var(--font-secundaria);
     color: var(--color-texto);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     letter-spacing: 0.5px;
     opacity: 0.9;
 }
@@ -217,12 +218,16 @@ footer {
     align-items: center;
     gap: 0.6rem;
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 500;
+}
+.footer-contacto-info p svg {
+    width: 14px;
+    height: 14px;
 }
 
 h3 {
-    margin-bottom: 1rem;
+    margin:0;;
 }
 
 /* =========================================================
@@ -463,8 +468,8 @@ button:hover {
     }
 .footer-derecha {
         flex: 1; /* El texto toma el resto */
-        align-items: flex-start; /* Alineado a la izquierda junto al logo */
-        text-align: left;
+        align-items: center; /* Alineado a la izquierda junto al logo */
+        text-align: center;
         gap: 0.4rem;
     }
 
@@ -476,7 +481,7 @@ button:hover {
     }
 
     .eslogan-principal {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         justify-content: flex-start;
     }
 

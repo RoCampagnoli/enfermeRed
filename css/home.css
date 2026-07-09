@@ -14,10 +14,8 @@
     align-items:center;
     overflow:hidden;
     border-radius:var(--radius-md);
-    /*min-height:60vh;
-    max-height:80vh;*/
-    min-height:80vh;
-    max-height:none;
+    min-height:68vh;
+    max-height:100vh;
 }
 
 .hero-image{
@@ -84,8 +82,11 @@
 }
 
 .titulo-contacto{
-    margin-bottom:1em;
+    margin-bottom:0.5rem;
 
+}
+h2{
+    margin:0.2rem;
 }
 
 .contenido-contacto{
@@ -103,7 +104,7 @@
 .info-contacto{
 
     background:white;
-    padding:2rem;
+    padding:1rem;
     border-radius:var(--radius-lg);
     box-shadow:var(--shadow-md);
     
@@ -115,7 +116,7 @@
     justify-content:center;
     gap:.8rem;
 
-    margin:1rem 0;
+    margin:0.9rem 0;
 }
 
 .info-contacto svg{
