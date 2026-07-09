@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>enfermeRed</title>
-        <link rel="icon" type="image/png" href="../imagenes/logoFooter.png">
+    <link rel="icon" type="image/png" href="../imagenes/logoFooter.png">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -70,14 +70,7 @@
                             <p><span id="dato-celular"></span></p>
                         </div>
                     </div>
-                    <div class="card-info">
-                        <h4>Datos de salud</h4>
-                        <div>
-                            <p><strong>Tipo de sangre:</strong> <span id="dato-tipo-sangre"></span></p>
-                            <p><strong>Alergias:</strong> <span id="dato-alergias"></span></p>
-                            <p><strong>Diagnóstico:</strong> <span id="dato-diagnostico"></span></p>
-                        </div>
-                    </div>
+
                 </div>
             </section>
 
@@ -92,7 +85,8 @@
                 <div class="contenido-seccion" id="enfermerosAsociadosContenido">
                     <!-- Enfermeros asociados se renderizan aquí -->
                 </div>
-                <button class="btn-accion-seccion" onclick="window.location.href='nuestrosEnf.html'">buscar enfermeros</button>
+                <button class="btn-accion-seccion" onclick="window.location.href='nuestrosEnf.html'">buscar
+                    enfermeros</button>
 
             </section>
 
@@ -121,31 +115,49 @@
                 <div class="contenido-seccion">
                     <div class="card-info-divs">
                         <div>
-                            <h3>Enfermedad 1: [Nombre de la Enfermedad]</h3>
-                            <p>Fecha de diagnóstico: [Fecha de diagnóstico]</p>
-                            <p>Tratamiento: [Tratamiento]</p>
+                            <h4>Datos de salud</h4>
+                            <p><strong>Tipo de sangre:</strong> <span id="dato-tipo-sangre"></span></p>
+                            <p><strong>Alergias:</strong> <span id="dato-alergias"></span></p>
+                            <p><strong>Diagnóstico:</strong> <span id="dato-diagnostico"></span></p>
                         </div>
                         <div class="acciones-enfermero">
-                            <button class="btn-editar-med" aria-label="Editar antecedente"><i data-lucide="pencil"></i></button>
-                            <button class="btn-borrar-med" aria-label="Borrar antecedente"><i data-lucide="trash-2"></i></button>
+                            <button id="btnEditarSalud" aria-label="Editar datos de salud"><i
+                                    data-lucide="pencil"></i></button>
                         </div>
                     </div>
-                    <div class="card-info-divs">
-                        <div>
-                            <h3>Enfermedad 2: [Nombre de la Enfermedad]</h3>
-                            <p>Fecha de diagnóstico: [Fecha de diagnóstico]</p>
-                            <p>Tratamiento: [Tratamiento]</p>
-                        </div>
-                        <div class="acciones-enfermero">
-                            <button class="btn-editar-med" aria-label="Editar antecedente"><i data-lucide="pencil"></i></button>
-                            <button class="btn-borrar-med" aria-label="Borrar antecedente"><i data-lucide="trash-2"></i></button>
-                        </div>
-                    </div>
+                        <div id="listaAntecedentes"></div>
+
                 </div>
                 <button class="btn-accion-seccion">Cargar nuevo antecedente</button>
 
             </section>
         </section>
+
+
+        <!-- Modal de edición de antecedente -->
+<div class="popup-overlay" id="popupEditarAntecedente">
+    <div class="popup-contenido popup-formulario">
+        <div class="popup-formulario-header">
+            <h3>Editar antecedente médico</h3>
+            <button type="button" id="btnCerrarEditarAntecedente" aria-label="Cerrar"><i data-lucide="x"></i></button>
+        </div>
+
+        <form id="formEditarAntecedente" class="form-editar-perfil">
+            <input type="hidden" id="inputAntecedenteId" name="id">
+            <fieldset>
+                <legend>Datos del antecedente</legend>
+                <label for="inputEditarEnfermedad">Nombre de la enfermedad</label>
+                <input type="text" id="inputEditarEnfermedad" name="enfermedad" required>
+                <label for="inputEditarFecha">Fecha de diagnóstico</label>
+                <input type="text" id="inputEditarFecha" name="fecha" placeholder="dd/mm/aaaa">
+                <label for="inputEditarTratamiento">Tratamiento</label>
+                <input type="text" id="inputEditarTratamiento" name="tratamiento">
+            </fieldset>
+
+            <button type="submit" class="btn-enviar">Guardar cambios</button>
+        </form>
+    </div>
+</div>
 
         <!-- Modal de edición -->
         <div class="popup-overlay" id="popupEditarDatos">
@@ -155,9 +167,9 @@
                     <button type="button" id="btnCerrarEditar" aria-label="Cerrar"><i data-lucide="x"></i></button>
                 </div>
 
-                <form id="formEditarDatos">
+                <form  class="form-editar-perfil" id="formEditarDatos">
                     <fieldset>
-                        <legend>Datos personales</legend>
+                        <legend>Datos del Paciente</legend>
                         <label for="inputEditarNombre">Nombre</label>
                         <input type="text" id="inputEditarNombre" name="nombre">
                         <label for="inputEditarApellido">Apellido</label>
@@ -182,20 +194,34 @@
                         <input type="text" id="inputEditarCelular" name="celular">
                     </fieldset>
 
-                    <fieldset>
-                        <legend>Datos de salud</legend>
-                        <label for="inputEditarTipoSangre">Tipo de sangre</label>
-                        <input type="text" id="inputEditarTipoSangre" name="tipoSangre">
-                        <label for="inputEditarAlergias">Alergias</label>
-                        <input type="text" id="inputEditarAlergias" name="alergias">
-                        <label for="inputEditarDiagnostico">Diagnóstico</label>
-                        <input type="text" id="inputEditarDiagnostico" name="diagnostico">
-                    </fieldset>
-
                     <button type="submit" class="btn-enviar">Guardar cambios</button>
                 </form>
             </div>
         </div>
+
+        <!-- Modal de edición de datos de salud -->
+<div class="popup-overlay" id="popupEditarSalud">
+    <div class="popup-contenido popup-formulario">
+        <div class="popup-formulario-header">
+            <h3>Editar datos de salud</h3>
+            <button type="button" id="btnCerrarEditarSalud" aria-label="Cerrar"><i data-lucide="x"></i></button>
+        </div>
+
+        <form class="form-editar-perfil" id="formEditarSalud">
+            <fieldset>
+                <legend>Datos de salud</legend>
+                <label for="inputEditarTipoSangre">Tipo de sangre</label>
+                <input type="text" id="inputEditarTipoSangre" name="tipoSangre">
+                <label for="inputEditarAlergias">Alergias</label>
+                <input type="text" id="inputEditarAlergias" name="alergias">
+                <label for="inputEditarDiagnostico">Diagnóstico</label>
+                <input type="text" id="inputEditarDiagnostico" name="diagnostico">
+            </fieldset>
+
+            <button type="submit" class="btn-enviar">Guardar cambios</button>
+        </form>
+    </div>
+</div>
 
         <!-- Popup de éxito -->
         <div class="popup-overlay" id="popupEdicionExitosa">
@@ -302,6 +328,9 @@
     </main>
     <div id="footer-component"></div>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../js/lectorPdf.js"></script>
     <script src="../js/cargaFragmentos.js"></script>
     <script src="../js/usuarios.js"></script>
     <script src="../js/gestionUsuarios.js"></script>

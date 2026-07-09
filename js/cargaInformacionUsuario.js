@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderizarDatosPaciente(paciente);
     renderizarEnfermerosAsociados(paciente.enfermerosAsociados || []);
+renderizarAntecedentes(paciente.antecedentes || []);
+
+
 
     inicializarPopup('popupWhatsapp', 'btnCerrarWhatsapp');
 
@@ -36,9 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
         formEditar.telefono.value = usuarioActual.telefono || "";
         formEditar.email.value = usuarioActual.email || "";
         formEditar.celular.value = usuarioActual.celular || "";
-        formEditar.tipoSangre.value = usuarioActual.tipoSangre || "";
-        formEditar.alergias.value = usuarioActual.alergias || "";
-        formEditar.diagnostico.value = usuarioActual.diagnostico || "";
 
         modalEditar.classList.add("mostrar");
     }
@@ -68,9 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
             telefono: formData.get("telefono"),
             email: formData.get("email"),
             celular: formData.get("celular"),
-            tipoSangre: formData.get("tipoSangre"),
-            alergias: formData.get("alergias"),
-            diagnostico: formData.get("diagnostico")
         };
 
         const resultado = actualizarUsuario(usuarioLogueado.id, datosNuevos);
@@ -87,7 +84,203 @@ document.addEventListener("DOMContentLoaded", () => {
         popupExito.classList.remove("mostrar");
     });
 
+    // ---------- Modal de edición de salud ----------
+    const modalEditarSalud = document.getElementById("popupEditarSalud");
+    const btnEditarSalud = document.getElementById("btnEditarSalud");
+    const btnCerrarEditarSalud = document.getElementById("btnCerrarEditarSalud");
+    const formEditarSalud = document.getElementById("formEditarSalud");
+
+    function abrirModalEditarSalud() {
+        const usuarioActual = buscarUsuarioPorId(usuarioLogueado.id);
+
+        formEditarSalud.tipoSangre.value = usuarioActual.tipoSangre || "";
+        formEditarSalud.alergias.value = usuarioActual.alergias || "";
+        formEditarSalud.diagnostico.value = usuarioActual.diagnostico || "";
+
+        modalEditarSalud.classList.add("mostrar");
+    }
+
+    function cerrarModalEditarSalud() {
+        modalEditarSalud.classList.remove("mostrar");
+    }
+
+    btnEditarSalud.addEventListener("click", abrirModalEditarSalud);
+    btnCerrarEditarSalud.addEventListener("click", cerrarModalEditarSalud);
+
+    modalEditarSalud.addEventListener("click", (event) => {
+        if (event.target === modalEditarSalud) cerrarModalEditarSalud();
+    });
+
+    formEditarSalud.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(formEditarSalud);
+
+        const datosNuevos = {
+            tipoSangre: formData.get("tipoSangre"),
+            alergias: formData.get("alergias"),
+            diagnostico: formData.get("diagnostico")
+        };
+
+        const resultado = actualizarUsuario(usuarioLogueado.id, datosNuevos);
+
+        if (resultado.exito) {
+            localStorage.setItem("usuarioLogueado", JSON.stringify(resultado.usuario));
+            renderizarDatosPaciente(resultado.usuario);
+            cerrarModalEditarSalud();
+            popupExito.classList.add("mostrar");
+        }
+    });
+
+
+    // ---------- Modal de edición de antecedentes ----------
+const modalEditarAntecedente = document.getElementById("popupEditarAntecedente");
+const btnCerrarEditarAntecedente = document.getElementById("btnCerrarEditarAntecedente");
+const formEditarAntecedente = document.getElementById("formEditarAntecedente");
+
+function abrirModalEditarAntecedente(idAntecedente) {
+    const usuarioActual = buscarUsuarioPorId(usuarioLogueado.id);
+    const antecedente = (usuarioActual.antecedentes || []).find(a => a.id === idAntecedente);
+    if (!antecedente) return;
+
+    formEditarAntecedente.id.value = antecedente.id;
+    formEditarAntecedente.enfermedad.value = antecedente.enfermedad === "Antecedente sin nombre (completar)" ? "" : antecedente.enfermedad;
+    formEditarAntecedente.fecha.value = antecedente.fecha || "";
+    formEditarAntecedente.tratamiento.value = antecedente.tratamiento || "";
+
+    modalEditarAntecedente.classList.add("mostrar");
+}
+
+function cerrarModalEditarAntecedente() {
+    modalEditarAntecedente.classList.remove("mostrar");
+}
+
+btnCerrarEditarAntecedente.addEventListener("click", cerrarModalEditarAntecedente);
+
+modalEditarAntecedente.addEventListener("click", (event) => {
+    if (event.target === modalEditarAntecedente) cerrarModalEditarAntecedente();
 });
+
+formEditarAntecedente.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(formEditarAntecedente);
+    const idAntecedente = formData.get("id");
+
+    const usuarioActual = buscarUsuarioPorId(usuarioLogueado.id);
+    const antecedentesActualizados = (usuarioActual.antecedentes || []).map(antecedente => {
+        if (antecedente.id !== idAntecedente) return antecedente;
+        return {
+            ...antecedente,
+            enfermedad: formData.get("enfermedad"),
+            fecha: formData.get("fecha"),
+            tratamiento: formData.get("tratamiento")
+        };
+    });
+
+    const resultado = actualizarUsuario(usuarioLogueado.id, { antecedentes: antecedentesActualizados });
+
+    if (resultado.exito) {
+        localStorage.setItem("usuarioLogueado", JSON.stringify(resultado.usuario));
+        renderizarAntecedentes(resultado.usuario.antecedentes);
+        cerrarModalEditarAntecedente();
+        popupExito.classList.add("mostrar");
+    }
+});
+
+function borrarAntecedente(idAntecedente) {
+    const usuarioActual = buscarUsuarioPorId(usuarioLogueado.id);
+    const antecedentesActualizados = (usuarioActual.antecedentes || []).filter(a => a.id !== idAntecedente);
+
+    const resultado = actualizarUsuario(usuarioLogueado.id, { antecedentes: antecedentesActualizados });
+
+    if (resultado.exito) {
+        localStorage.setItem("usuarioLogueado", JSON.stringify(resultado.usuario));
+        renderizarAntecedentes(resultado.usuario.antecedentes);
+    }
+}
+
+// Delegación de eventos: como las cards se generan dinámicamente,
+// escuchamos los clics en el contenedor padre en vez de en cada botón.
+document.getElementById("listaAntecedentes").addEventListener("click", (event) => {
+    const btnEditar = event.target.closest(".btn-editar-antecedente");
+    if (btnEditar) {
+        abrirModalEditarAntecedente(btnEditar.dataset.id);
+        return;
+    }
+
+    const btnBorrar = event.target.closest(".btn-borrar-antecedente");
+    if (btnBorrar) {
+        if (confirm("¿Seguro que querés borrar este antecedente médico?")) {
+            borrarAntecedente(btnBorrar.dataset.id);
+        }
+    }
+});
+
+}); // <-- acá cierra el DOMContentLoaded, después de todo lo anterior
+
+
+
+
+
+function huboErrorDeExtraccion(antecedente) {
+    // Si la enfermedad quedó con el texto de fallback, o si TODOS los campos
+    // relevantes vinieron vacíos, consideramos que la lectura del PDF falló.
+    const sinNombre = antecedente.enfermedad === "Antecedente sin nombre (completar)" || !antecedente.enfermedad;
+    const sinFecha = !antecedente.fecha;
+    const sinTratamiento = !antecedente.tratamiento;
+
+    return sinNombre && sinFecha && sinTratamiento;
+}
+
+function renderizarAntecedentes(antecedentes) {
+    const contenedor = document.getElementById("listaAntecedentes");
+    if (!contenedor) return;
+
+    if (!antecedentes || antecedentes.length === 0) {
+        contenedor.innerHTML = `
+            <div class="sin-datos-vacio">
+                <i data-lucide="file-text"></i>
+                <p>Todavía no cargaste antecedentes médicos.</p>
+            </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+    }
+
+    contenedor.innerHTML = antecedentes.map(antecedente => {
+        if (huboErrorDeExtraccion(antecedente)) {
+            return `
+                <div class="card-info-divs card-antecedente-error" data-id="${antecedente.id}">
+                    <div>
+                        <h3><i data-lucide="alert-triangle"></i> No se pudo cargar la información del PDF subido</h3>
+                        <p>Archivo: ${antecedente.archivoNombre || "sin nombre"}</p>
+                        <p>Por favor, editá los datos manualmente.</p>
+                    </div>
+                    <div class="acciones-enfermero">
+                        <button class="btn-editar-antecedente" data-id="${antecedente.id}" aria-label="Editar antecedente"><i data-lucide="pencil"></i></button>
+                        <button class="btn-borrar-antecedente" data-id="${antecedente.id}" aria-label="Borrar antecedente"><i data-lucide="trash-2"></i></button>
+                    </div>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="card-info-divs" data-id="${antecedente.id}">
+                <div>
+                    <h3>${antecedente.enfermedad}</h3>
+                    <p>Fecha de diagnóstico: ${antecedente.fecha || "-"}</p>
+                    <p>Tratamiento: ${antecedente.tratamiento || "-"}</p>
+                </div>
+                <div class="acciones-enfermero">
+                    <button class="btn-editar-antecedente" data-id="${antecedente.id}" aria-label="Editar antecedente"><i data-lucide="pencil"></i></button>
+                    <button class="btn-borrar-antecedente" data-id="${antecedente.id}" aria-label="Borrar antecedente"><i data-lucide="trash-2"></i></button>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    if (window.lucide) lucide.createIcons();
+}
+
 
 function renderizarEnfermerosAsociados(enfermeros) {
     const contenedor = document.getElementById("enfermerosAsociadosContenido");

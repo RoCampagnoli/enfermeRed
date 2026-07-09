@@ -11,6 +11,17 @@ h2{
     padding: 0.5rem 0;
 }
 
+.card-antecedente-error {
+    border-left: 4px solid #e0a800;
+    background-color: #fff8e1;
+}
+
+.card-antecedente-error h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #856404;
+}
 /* =========================================================
    UNIFICACIÓN DE COLOR EN TÍTULOS Y SUBTÍTULOS
    ========================================================= */

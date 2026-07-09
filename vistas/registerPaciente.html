@@ -67,10 +67,23 @@
                             <span class="mensaje-error" id="error-necesidades"></span>
                         </div>
                     </div>
+                    <div class="form-row">
+    <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required minlength="4">
+        <span class="mensaje-error" id="error-password"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="confirmarPassword">Confirmar contraseña</label>
+        <input type="password" id="confirmarPassword" name="confirmarPassword" required minlength="4">
+        <span class="mensaje-error" id="error-confirmarPassword"></span>
+    </div>
+</div>
 
                     <!-- Sección de carga de archivos -->
                     <div class="seccion-archivos">
-                        <h3 class="titulo-archivos">Carga todos tus antecedentes y estudios médicos (pdf., png., jpg.)</h3>
+<h3 class="titulo-archivos">Cargá tus antecedentes y estudios médicos en formato PDF</h3>
                         
                         <div class="lista-archivos" id="listaArchivos">
                             <!-- Los archivos cargados se mostrarán aquí -->
@@ -82,7 +95,7 @@
                                 <span>Cargar Archivo</span>
                                 <i class="fas fa-cloud-upload-alt"></i>
                             </label>
-                            <input type="file" id="input-archivos" name="archivos" multiple accept=".pdf,.png,.jpg,.jpeg" style="display: none;">
+<input type="file" id="input-archivos" name="archivos" multiple accept=".pdf" style="display: none;">
                         </div>
 
                         <span class="mensaje-error" id="error-archivos"></span>
@@ -111,7 +124,8 @@
     </div>
 
     <div id="footer-component"></div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../js/lectorPdf.js"></script>
     <script src="../js/cargaFragmentos.js"></script>
     <script src="../js/usuarios.js"></script>
     <script src="../js/registerPaciente.js"></script>

@@ -59,7 +59,6 @@ function registrarUsuario(usuarioNuevo) {
 
     const usuarios = obtenerUsuarios();
 
-    // Verificar email repetido
     if (buscarUsuarioPorEmail(usuarioNuevo.email)) {
         return {
             exito: false,
@@ -67,19 +66,16 @@ function registrarUsuario(usuarioNuevo) {
         };
     }
 
-    // Generar ID automático
     usuarioNuevo.id = usuarios.length + 1;
 
     usuarios.push(usuarioNuevo);
 
-    localStorage.setItem(
-        "usuarios",
-        JSON.stringify(usuarios)
-    );
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
     return {
         exito: true,
-        mensaje: "Usuario registrado correctamente."
+        mensaje: "Usuario registrado correctamente.",
+        usuario: usuarioNuevo   // <-- Nuevo: devolvemos el usuario con su id ya asignado
     };
 
 }

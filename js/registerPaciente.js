@@ -7,6 +7,8 @@ const REGEX_TELEFONO = /^[0-9\s\-\+\(\)]+$/;
 
 // Lista de archivos cargados
 let archivosSeleccionados = [];
+let antecedentesExtraidos = []; // Nuevo: {id, enfermedad, fecha, tratamiento, archivoNombre, archivoBase64}
+
 
 function mostrarError(idSpan, mensaje, input) {
     const span = document.getElementById(idSpan);
@@ -78,6 +80,30 @@ function validarFormularioRegistro() {
     }
 
     return esValido;
+
+    // Validar Contraseña
+const password = document.getElementById('password').value;
+const confirmarPassword = document.getElementById('confirmarPassword').value;
+
+if (!password) {
+    mostrarError('error-password', 'Ingresá una contraseña.', document.getElementById('password'));
+    esValido = false;
+} else if (password.length < 4) {
+    mostrarError('error-password', 'La contraseña debe tener al menos 4 caracteres.', document.getElementById('password'));
+    esValido = false;
+} else {
+    mostrarError('error-password', '', document.getElementById('password'));
+}
+
+if (!confirmarPassword) {
+    mostrarError('error-confirmarPassword', 'Confirmá tu contraseña.', document.getElementById('confirmarPassword'));
+    esValido = false;
+} else if (password !== confirmarPassword) {
+    mostrarError('error-confirmarPassword', 'Las contraseñas no coinciden.', document.getElementById('confirmarPassword'));
+    esValido = false;
+} else {
+    mostrarError('error-confirmarPassword', '', document.getElementById('confirmarPassword'));
+}
 }
 
 function getIconoArchivo(nombreArchivo) {
@@ -112,33 +138,30 @@ function actualizarListaArchivos() {
         // Agregar evento al botón de eliminar
         archivoEl.querySelector('.btn-eliminar-archivo').addEventListener('click', (e) => {
             e.preventDefault();
+            const nombreEliminado = archivosSeleccionados[index].name;
             archivosSeleccionados.splice(index, 1);
+            antecedentesExtraidos = antecedentesExtraidos.filter(a => a.archivoNombre !== nombreEliminado);
             actualizarListaArchivos();
         });
 
         lista.appendChild(archivoEl);
     });
 }
-
-function manejarCargaArchivos(event) {
+async function manejarCargaArchivos(event) {
     const archivos = Array.from(event.target.files);
 
-    // Validar que no excedan 5 archivos en total
     if (archivosSeleccionados.length + archivos.length > 5) {
         mostrarError('error-archivos', 'No puedes cargar más de 5 archivos.', null);
         return;
     }
 
-    // Validar tipo de archivo
-    const tiposValidos = ['application/pdf', 'image/png', 'image/jpeg'];
     for (let archivo of archivos) {
-        if (!tiposValidos.includes(archivo.type) && !archivo.name.toLowerCase().endsWith('.pdf')) {
-            mostrarError('error-archivos', `El archivo "${archivo.name}" no es válido. Solo se permiten PDF, PNG y JPG.`, null);
+        if (archivo.type !== 'application/pdf' && !archivo.name.toLowerCase().endsWith('.pdf')) {
+            mostrarError('error-archivos', `El archivo "${archivo.name}" no es válido. Solo se permiten PDF.`, null);
             return;
         }
     }
 
-    // Validar tamaño de archivo (máximo 5MB por archivo)
     for (let archivo of archivos) {
         if (archivo.size > 5 * 1024 * 1024) {
             mostrarError('error-archivos', `El archivo "${archivo.name}" es demasiado grande (máximo 5MB).`, null);
@@ -149,9 +172,17 @@ function manejarCargaArchivos(event) {
     archivosSeleccionados.push(...archivos);
     mostrarError('error-archivos', '', null);
     actualizarListaArchivos();
-
-    // Limpiar el input de archivo
     event.target.value = '';
+
+    // Procesamos cada PDF nuevo para extraer los datos del antecedente
+    for (let archivo of archivos) {
+        try {
+            const antecedente = await procesarPdfAntecedente(archivo);
+            antecedentesExtraidos.push(antecedente);
+        } catch (error) {
+            console.error(`No se pudo leer el archivo ${archivo.name}:`, error);
+        }
+    }
 }
 
 async function manejarRegistro(event) {
@@ -176,13 +207,13 @@ async function manejarRegistro(event) {
             telefono: document.getElementById('telefono').value.trim(),
             necesidades: document.getElementById('necesidades').value.trim(),
             tipo: 'paciente',
-            archivos: archivosSeleccionados.length
+            antecedentes: antecedentesExtraidos
         };
 
         // Guardar usuario (simulado)
         const resultado = registrarUsuario({
             ...nuevoUsuario,
-            password: 'temporal123' // Contraseña temporal (esto debería venir del usuario)
+    password: document.getElementById('password').value // antes: 'temporal123'
         });
 
         if (!resultado.exito) {
@@ -193,11 +224,12 @@ async function manejarRegistro(event) {
         await new Promise((resolve) => setTimeout(resolve, 600));
 
         // Iniciar sesión automáticamente
-        localStorage.setItem('usuarioLogueado', JSON.stringify({
-            email: nuevoUsuario.email,
-            nombre: nuevoUsuario.nombre,
-            tipo: 'paciente'
-        }));
+       localStorage.setItem('usuarioLogueado', JSON.stringify({
+    id: resultado.usuario.id,
+    email: resultado.usuario.email,
+    nombre: resultado.usuario.nombre,
+    tipo: 'paciente'
+}));
 
         // Mostrar popup de éxito
         mostrarPopupExito();
