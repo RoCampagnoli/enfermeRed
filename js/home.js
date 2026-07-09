@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnBuscarEnfermero = document.getElementById('btnBuscarEnfermero');
     const btnSoyEnfermero = document.getElementById('btnSoyEnfermero');
+    const popupCuentaPaciente = document.getElementById('popupCuentaPaciente');
+    const btnAceptarCuentaPaciente = document.getElementById('btnAceptarCuentaPaciente');
+    const btnCancelarCuentaPaciente = document.getElementById('btnCancelarCuentaPaciente');
 
     // "Busco Enfermero" siempre lleva a la lista de enfermeros
     btnBuscarEnfermero.onclick = () => {
@@ -19,13 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = '../vistas/miPerfilEnferm.html';
             } else {
                 // Está logueado pero como paciente -> no tiene perfil de enfermero
-                alert('Tu cuenta está registrada como paciente. Iniciá sesión con una cuenta de enfermero.');
-                window.location.href = '../vistas/iniciarSesion.html';
+                popupCuentaPaciente.classList.add('mostrar');
             }
         } else {
             // No hay sesión -> va a iniciar sesión
             window.location.href = '../vistas/iniciarSesion.html';
         }
+    };
+
+    btnAceptarCuentaPaciente.onclick = () => {
+        window.location.href = '../vistas/iniciarSesion.html';
+    };
+
+    btnCancelarCuentaPaciente.onclick = () => {
+        popupCuentaPaciente.classList.remove('mostrar');
     };
 
 const formContacto = document.getElementById('formContacto');
