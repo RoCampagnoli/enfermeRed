@@ -229,6 +229,55 @@ h2{
     width: 16px !important;
     height: 16px !important;
 }
+
+.valoracion-enfermero-asociado {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.35rem;
+    color: var(--color-advertencia);
+    font-size: 1rem;
+}
+
+.acciones-enfermero button.btn-editar-valoracion-enfermero {
+    color: var(--color-advertencia);
+    border-color: var(--color-advertencia);
+}
+
+.popup-valoracion-card {
+    max-width: 420px;
+    padding: 2rem 1.5rem;
+}
+
+.popup-valoracion-card h2 {
+    margin-bottom: 0.25rem;
+}
+
+.popup-valoracion-card p {
+    margin: 0;
+    color: var(--color-texto-secundario);
+}
+
+.valoracion-estrellas {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+}
+
+.valoracion-estrellas button {
+    border: none;
+    background: transparent;
+    color: var(--color-advertencia);
+    cursor: pointer;
+    font-size: 2rem;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.valoracion-estrellas button:hover,
+.valoracion-estrellas button.activa {
+    transform: scale(1.08);
+}
 /* =========================================================
    BLOQUE DE TEXTO E ICONOS DEL MEDICAMENTO
    ========================================================= */

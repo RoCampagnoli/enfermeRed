@@ -123,6 +123,8 @@
                         <div class="acciones-enfermero">
                             <button id="btnEditarSalud" aria-label="Editar datos de salud"><i
                                     data-lucide="pencil"></i></button>
+                            <button id="btnBorrarSalud" class="btn-borrar-med" aria-label="Eliminar datos de salud"><i
+                                    data-lucide="trash-2"></i></button>
                         </div>
                     </div>
                         <div id="listaAntecedentes"></div>
@@ -242,6 +244,33 @@
                 </div>
                 <img src="../imagenes/whatsapp.png" alt="Logo de WhatsApp" class="popup-whatsapp-icono">
                 <p>Te estamos redirigiendo a WhatsApp para que puedas continuar la conversación.</p>
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popupValoracionEnfermero">
+            <div class="popup-card popup-valoracion-card">
+                <h2>Modificar valoración</h2>
+                <p id="nombreEnfermeroValoracion"></p>
+                <div class="valoracion-estrellas" id="estrellasValoracionEnfermero">
+                    <button type="button" data-value="1" aria-label="1 estrella"><i class="fa-regular fa-star"></i></button>
+                    <button type="button" data-value="2" aria-label="2 estrellas"><i class="fa-regular fa-star"></i></button>
+                    <button type="button" data-value="3" aria-label="3 estrellas"><i class="fa-regular fa-star"></i></button>
+                </div>
+                <div class="popup-sesion-botones">
+                    <button class="btn-busqueda" id="btnGuardarValoracion">Guardar</button>
+                    <button class="btn-enfermero" id="btnCancelarValoracion">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popupConfirmarBorrarSalud">
+            <div class="popup-card popup-sesion-card">
+                <h2 class="popup-sesion-titulo">Eliminar datos de salud</h2>
+                <p class="popup-sesion-mensaje">¿Seguro que querés eliminar tus datos de salud?</p>
+                <div class="popup-sesion-botones">
+                    <button class="btn-busqueda" id="btnConfirmarBorrarSalud">Aceptar</button>
+                    <button class="btn-enfermero" id="btnCancelarBorrarSalud">Cancelar</button>
+                </div>
             </div>
         </div>
 

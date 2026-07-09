@@ -87,6 +87,10 @@ renderizarAntecedentes(paciente.antecedentes || []);
     // ---------- Modal de edición de salud ----------
     const modalEditarSalud = document.getElementById("popupEditarSalud");
     const btnEditarSalud = document.getElementById("btnEditarSalud");
+    const btnBorrarSalud = document.getElementById("btnBorrarSalud");
+    const popupConfirmarBorrarSalud = document.getElementById("popupConfirmarBorrarSalud");
+    const btnConfirmarBorrarSalud = document.getElementById("btnConfirmarBorrarSalud");
+    const btnCancelarBorrarSalud = document.getElementById("btnCancelarBorrarSalud");
     const btnCerrarEditarSalud = document.getElementById("btnCerrarEditarSalud");
     const formEditarSalud = document.getElementById("formEditarSalud");
 
@@ -105,6 +109,28 @@ renderizarAntecedentes(paciente.antecedentes || []);
     }
 
     btnEditarSalud.addEventListener("click", abrirModalEditarSalud);
+    btnBorrarSalud.addEventListener("click", () => {
+        popupConfirmarBorrarSalud.classList.add("mostrar");
+    });
+
+    btnConfirmarBorrarSalud.addEventListener("click", () => {
+        const resultado = actualizarUsuario(usuarioLogueado.id, {
+            tipoSangre: "",
+            alergias: "",
+            diagnostico: ""
+        });
+
+        if (resultado.exito) {
+            localStorage.setItem("usuarioLogueado", JSON.stringify(resultado.usuario));
+            renderizarDatosPaciente(resultado.usuario);
+        }
+        popupConfirmarBorrarSalud.classList.remove("mostrar");
+    });
+
+    btnCancelarBorrarSalud.addEventListener("click", () => {
+        popupConfirmarBorrarSalud.classList.remove("mostrar");
+    });
+
     btnCerrarEditarSalud.addEventListener("click", cerrarModalEditarSalud);
 
     modalEditarSalud.addEventListener("click", (event) => {
@@ -215,6 +241,75 @@ document.getElementById("listaAntecedentes").addEventListener("click", (event) =
     }
 });
 
+let enfermeroValoracionActual = null;
+let valoracionSeleccionadaEnfermero = 0;
+const popupValoracionEnfermero = document.getElementById("popupValoracionEnfermero");
+const nombreEnfermeroValoracion = document.getElementById("nombreEnfermeroValoracion");
+const estrellasValoracionEnfermero = document.querySelectorAll("#estrellasValoracionEnfermero button");
+const btnGuardarValoracion = document.getElementById("btnGuardarValoracion");
+const btnCancelarValoracion = document.getElementById("btnCancelarValoracion");
+
+function pintarEstrellasValoracion(valoracion) {
+    estrellasValoracionEnfermero.forEach((btn) => {
+        const activa = Number(btn.dataset.value) <= valoracion;
+        const icono = btn.querySelector("i");
+        icono.className = `${activa ? "fa-solid" : "fa-regular"} fa-star`;
+        btn.classList.toggle("activa", activa);
+    });
+}
+
+document.getElementById("enfermerosAsociadosContenido").addEventListener("click", (event) => {
+    const btnValoracion = event.target.closest(".btn-editar-valoracion-enfermero");
+    if (!btnValoracion) return;
+
+    const usuarioActual = buscarUsuarioPorId(usuarioLogueado.id);
+    const enfermero = (usuarioActual.enfermerosAsociados || []).find((item) =>
+        item.nombre === btnValoracion.dataset.nombre &&
+        (item.matricula || "") === btnValoracion.dataset.matricula
+    );
+    if (!enfermero) return;
+
+    enfermeroValoracionActual = {
+        nombre: enfermero.nombre,
+        matricula: enfermero.matricula || ""
+    };
+    valoracionSeleccionadaEnfermero = Number(enfermero.valoracion) || 0;
+    nombreEnfermeroValoracion.textContent = enfermero.nombre;
+    pintarEstrellasValoracion(valoracionSeleccionadaEnfermero);
+    popupValoracionEnfermero.classList.add("mostrar");
+});
+
+estrellasValoracionEnfermero.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        valoracionSeleccionadaEnfermero = Number(btn.dataset.value);
+        pintarEstrellasValoracion(valoracionSeleccionadaEnfermero);
+    });
+});
+
+btnGuardarValoracion.addEventListener("click", () => {
+    if (!enfermeroValoracionActual) return;
+
+    const usuarioActual = buscarUsuarioPorId(usuarioLogueado.id);
+    const enfermerosActualizados = (usuarioActual.enfermerosAsociados || []).map((enfermero) => {
+        const esSeleccionado = enfermero.nombre === enfermeroValoracionActual.nombre &&
+            (enfermero.matricula || "") === enfermeroValoracionActual.matricula;
+
+        return esSeleccionado
+            ? { ...enfermero, valoracion: valoracionSeleccionadaEnfermero }
+            : enfermero;
+    });
+
+    const resultado = actualizarUsuario(usuarioLogueado.id, { enfermerosAsociados: enfermerosActualizados });
+    if (resultado.exito) {
+        localStorage.setItem("usuarioLogueado", JSON.stringify(resultado.usuario));
+        renderizarEnfermerosAsociados(resultado.usuario.enfermerosAsociados || []);
+        popupValoracionEnfermero.classList.remove("mostrar");
+    }
+});
+
+btnCancelarValoracion.addEventListener("click", () => {
+    popupValoracionEnfermero.classList.remove("mostrar");
+});
 }); // <-- acá cierra el DOMContentLoaded, después de todo lo anterior
 
 
@@ -297,7 +392,13 @@ function renderizarEnfermerosAsociados(enfermeros) {
         return;
     }
 
-    contenedor.innerHTML = enfermeros.map(enfermero => `
+    contenedor.innerHTML = enfermeros.map(enfermero => {
+        const valoracion = Number(enfermero.valoracion) || 0;
+        const estrellas = [1, 2, 3].map((estrella) =>
+            `<i class="${estrella <= valoracion ? 'fa-solid' : 'fa-regular'} fa-star"></i>`
+        ).join('');
+
+        return `
         <div class="card-info-divs">
             <div class="enfermero-header">
                 <img src="${enfermero.avatar || '../imagenes/avatar_camila.png'}" alt="Foto de ${enfermero.nombre}" class="foto-enfermero">
@@ -305,14 +406,17 @@ function renderizarEnfermerosAsociados(enfermeros) {
                     <h3>${enfermero.nombre}</h3>
                     <p>${enfermero.especialidad || '-'}</p>
                     <p>${enfermero.matricula || '-'}</p>
+                    <div class="valoracion-enfermero-asociado" aria-label="ValoraciÃ³n actual">${estrellas}</div>
                 </div>
             </div>
             <div class="acciones-enfermero">
                 <button aria-label="Llamar"><i data-lucide="phone"></i></button>
                 <button class="btn-enviar-mensaje-enfermero" aria-label="Enviar mensaje"><i data-lucide="message-circle"></i></button>
+                <button class="btn-editar-valoracion-enfermero" data-nombre="${enfermero.nombre}" data-matricula="${enfermero.matricula || ''}" aria-label="Modificar valoraciÃ³n"><i data-lucide="star"></i></button>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 
     if (window.lucide) lucide.createIcons();
 

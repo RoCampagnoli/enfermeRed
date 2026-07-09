@@ -201,6 +201,7 @@ function obtenerDatosEnfermeroAsociado(card) {
         matricula: card.querySelectorAll('.nurse-meta')[0]?.textContent.trim() || '',
         precio: card.querySelector('.nurse-precio')?.textContent.trim() || '',
         avatar: card.querySelector('.nurse-avatar img')?.getAttribute('src') || '',
+        valoracion: parseInt(card.getAttribute('data-valoracion')) || 0,
         disponibilidad: Array.from(card.querySelectorAll('.nurse-disponibilidad span.activo'))
             .map((span) => span.textContent.trim())
             .filter(Boolean),

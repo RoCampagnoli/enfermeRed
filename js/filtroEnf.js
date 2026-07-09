@@ -3,6 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAbrir = document.getElementById('btnAbrirFiltro');
     const btnCerrar = document.getElementById('btnCerrarFiltro');
 
+    function pintarValoracionCard(card, valoracion) {
+        const rating = card.querySelector('.nurse-rating');
+        if (!rating) return;
+
+        card.setAttribute('data-valoracion', valoracion);
+        rating.innerHTML = [1, 2, 3].map((estrella) =>
+            `<i class="${estrella <= valoracion ? 'fa-solid' : 'fa-regular'} fa-star"></i>`
+        ).join('');
+    }
+
+    function aplicarValoracionesGuardadas() {
+        const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
+        if (!usuarioLogueado || usuarioLogueado.tipo !== 'paciente') return;
+
+        const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+        const paciente = usuarios.find((usuario) => usuario.id === usuarioLogueado.id) || usuarioLogueado;
+        const enfermerosAsociados = paciente.enfermerosAsociados || [];
+
+        document.querySelectorAll('.nurse-card').forEach((card) => {
+            const nombre = card.querySelector('h2')?.textContent.trim() || '';
+            const matricula = card.querySelectorAll('.nurse-meta')[0]?.textContent.trim() || '';
+            const enfermeroGuardado = enfermerosAsociados.find((enfermero) =>
+                enfermero.nombre === nombre && enfermero.matricula === matricula
+            );
+
+            if (enfermeroGuardado && enfermeroGuardado.valoracion !== undefined) {
+                pintarValoracionCard(card, Number(enfermeroGuardado.valoracion) || 0);
+            }
+        });
+    }
+
+    aplicarValoracionesGuardadas();
+
     // 1. Apertura y Cierre del Sidebar
     if (btnAbrir) {
         btnAbrir.addEventListener('click', () => sidebar.classList.add('active'));
